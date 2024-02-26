@@ -8,7 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Clear out existing users
 User.destroy_all
 
 # Array of dummy user data
