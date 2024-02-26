@@ -1,0 +1,45 @@
+<div class="boat-header" style="background-image:url('https://source.unsplash.com/random/?boat')"></div>
+
+<div class="container margin-top-negative">
+  <div class="row">
+    <div class="col-8">
+      <div class="boat-show-card">
+        <h1><%= @boat.name %></h1>
+        <p class="boat-show-description"><%= @boat.description %></p>
+      </div>
+      <div class="boat-show-card">
+        <h3>Pictures of the boat</h3>
+        <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="boat-show-card">
+        <h5>Book this boat!</h5>
+
+        <%# <form action="">
+          <div class="input-group">
+            <span class="input-group-text" id="start-date-label">From:</span>
+            <input type="text" class="form-control" placeholder="12/10/2017" aria-label="start-date" aria-describedby="start-date-label">
+          </div>
+          <div class="input-group mt-2">
+            <span class="input-group-text" id="end-date-label">To:</span>
+            <input type="text" class="form-control" placeholder="18/10/2017" aria-label="end-date" aria-describedby="start-date-label">
+          </div>
+          <input type="submit" value="Book" class="btn btn-success mt-2" style="width: 100%">
+        </form> %>
+      </div>
+      <div class="boat-show-card">
+        <h3>Details</h3>
+        <div class="flex">
+          <div class="flex ms-3">
+            Price per day: <strong><%= @boat.price_per_day %> CHF</strong>
+          </div>
+          <div class="flex ms-3">
+            Year production: <strong><%= @boat.year_production %></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
