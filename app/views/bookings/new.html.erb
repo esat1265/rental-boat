@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3">
       <div class="bg-white rounded p-3 shadow">
-        <h3>Book a boat</h3>
+        <h3>Book the <%= @boat.name %></h3>
+
         <%= simple_form_for @booking do |f| %>
           <%= f.input :start_date %>
           <%= f.input :end_date %>
