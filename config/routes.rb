@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: "boats#index"
   resources :boats
+  resources :boats, only: [:index, :show]
 end
