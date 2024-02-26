@@ -63,7 +63,7 @@ year_range = (2000..2024)
     price_per_day: rand(price_range),
     year_production: rand(year_range),
     image_url: "https://example.com/boat-image.jpg",
-    user_id: [1,2].sample
+    user_id: [1, 2].sample
   )
 end
 
