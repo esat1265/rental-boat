@@ -8,6 +8,7 @@
           <%= f.input :description, placeholder: 'write a description' %>
           <%= f.input :price_per_day %>
           <%= f.input :year_production %>
+          <%= f.input :user_id, as: :hidden, input_html: { value: 2 } %>
           <%= f.input :photo, as: :file %>
           <%= f.submit class: 'btn btn-flat' %>
         <% end %>
