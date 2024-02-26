@@ -9,19 +9,19 @@
 #   end
 
 # # Clear out existing users
-# User.destroy_all
+User.destroy_all
 
-# # Array of dummy user data
-# dummy_users = [
-#   { email: 'john@example.com', password: 'password', first_name: 'John', last_name: 'Doe' },
-#   { email: 'jane@example.com', password: 'password', first_name: 'Jane', last_name: 'Doe' },
-#   # Add more dummy user data as needed
-# ]
+# Array of dummy user data
+dummy_users = [
+  { email: 'john@example.com', password: 'password', first_name: 'John', last_name: 'Doe' },
+  { email: 'jane@example.com', password: 'password', first_name: 'Jane', last_name: 'Doe' },
+  # Add more dummy user data as needed
+]
 
-# # Create users from dummy data
-# dummy_users.each do |user_data|
-#   User.create!(user_data)
-# end
+# Create users from dummy data
+dummy_users.each do |user_data|
+  User.create!(user_data)
+end
 
 # Define an array of sample boat names
 boat_names = [
@@ -63,7 +63,7 @@ year_range = (2000..2024)
     price_per_day: rand(price_range),
     year_production: rand(year_range),
     image_url: "https://example.com/boat-image.jpg",
-    user_id: [1,2].sample
+    user_id: [1, 2].sample
   )
 end
 
