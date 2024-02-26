@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root to: "boats#index"
 
   resources :boats, only: [:index, :show, :new, :create] do
-    resources :booking, only: [:new, :create]
+    resources :bookings, only: [:new, :create]
   end
+
+  resources :bookings, only: [:index]
 end
