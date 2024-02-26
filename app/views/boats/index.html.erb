@@ -4,7 +4,7 @@
 
   <div class="row">
     <% @boats.each do |boat| %>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="col-md-4 mb-4 text-decoration-none">
+      <a href="/boats/<%= boat.id %>" class="col-md-4 mb-4 text-decoration-none">
         <div class="card boat-card h-100 d-flex flex-column rounded">
           <div class="boat-card-image rounded-top" style="background-image: url('https://images.pexels.com/photos/843633/pexels-photo-843633.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); height: 200px; background-size: cover; background-position: center;"></div>
           <div class="card-body d-flex flex-column flex-grow-1 position-relative">
