@@ -7,6 +7,10 @@ class BoatsController < ApplicationController
     @boat = Boat.new
   end
 
+  def show
+    @boat = Boat.find(params[:id])
+  end
+
   def create
     @boat = Boat.new(boat_params)
     if @boat.save
@@ -19,8 +23,6 @@ class BoatsController < ApplicationController
   private
   def boat_params
     params.require(:boat).permit(:name, :description, :price_per_day, :year_production, :photo)
-
-  def show
-    @boat = Boat.find(params[:id])
   end
+
 end
