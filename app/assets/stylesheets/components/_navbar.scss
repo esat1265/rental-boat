@@ -28,20 +28,33 @@
   display: flex;
 }
 
-.simple_form {
-  flex-direction: row;
+.search-navbar {
   display: flex;
   gap: 10px;
+  flex-direction: row;
   border: 1px solid lightgrey;
   border-radius: 20px;
   padding: 15px;
   margin-bottom: 5px;
-  font-size: 14px;
+  margin-right: 50px;
+  font-size: 13px;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-group,
+.bouton {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
-.bouton {
-  display: flex;
-  align-items: center;
-  margin-top: 12px;
+.form-group label,
+.form-group input,
+.bouton input[type="submit"] {
+  margin-right: 10px;
 }
