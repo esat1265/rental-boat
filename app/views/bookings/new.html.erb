@@ -4,11 +4,12 @@
     <div class="col-12 col-md-6 offset-lg-3">
       <div class="bg-white rounded p-3 shadow">
         <h3>Book the <%= @boat_to_book.name %></h3>
-        <div data-controller="get_sum_days">
+        <div data-controller="get-sum-days">
+          <p><small>Price per day: <%= @boat_to_book.price_per_day %> CHF</small></p>
           <%= simple_form_for @booking do |f| %>
-            <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-            <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-            <p><strong> Total amount: <%= @boat_to_book.price_per_day %> CHF</strong></p>
+            <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker", action: 'change->get-sum-days#sum', get_sum_days_target: "start_date"} } %>
+            <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker", action: 'change->get-sum-days#sum', get_sum_days_target: "end_date" } } %>
+            <p data-get-sum-days-target="amount" class="fs-4"></p>
             <%= f.submit class: 'btn btn-primary' %>
           <% end %>
         </div>
