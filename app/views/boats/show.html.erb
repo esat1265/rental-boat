@@ -9,11 +9,27 @@
       </div>
       <div class="boat-show-card">
         <h3>Pictures of the boat</h3>
-        <% if @boat.photo.attached? %>
-          <%= cl_image_tag(@boat.photo.key, height: 350, crop: :fill)%>
-         <% else %>
-        <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
-        <% end %>
+        <div id="<%= "boatCarousel-#{@boat.id}"%>" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% if @boat.photos.attached? %>
+            <% @boat.photos.each do |photo| %>
+              <div class="carousel-item active">
+                <%= cl_image_tag(photo.key, height: 350, width: 650, crop: :fill) %>
+              </div>
+            <% end %>
+            <% else %>
+              <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="<%= "#boatCarousel-#{@boat.id}"%>" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="<%= "#boatCarousel-#{@boat.id}"%>" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
     </div>
 
