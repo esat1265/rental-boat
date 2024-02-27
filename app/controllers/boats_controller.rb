@@ -2,7 +2,11 @@ class BoatsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @boats = Boat.all
+    if params[:search].present?
+      @boats = Boat.all.limit(3)
+    else
+      @boats = Boat.all
+    end
   end
 
   def new
@@ -21,6 +25,12 @@ class BoatsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def search
+    available_start_date = params[:search][:start_date]
+    available_end_date = params[:search][:end_date]
+  end
+
 
   private
   def boat_params
