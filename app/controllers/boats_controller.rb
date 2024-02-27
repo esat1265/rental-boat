@@ -3,7 +3,9 @@ class BoatsController < ApplicationController
 
   def index
     if params[:search].present?
-      @boats = Boat.all.limit(3)
+      start_date = Date.parse(params[:search][:start_date])
+      end_date = Date.parse(params[:search][:end_date])
+      @boats = Boat.available(start_date, end_date)
     else
       @boats = Boat.all
     end
@@ -24,11 +26,6 @@ class BoatsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def search
-    available_start_date = params[:search][:start_date]
-    available_end_date = params[:search][:end_date]
   end
 
 
