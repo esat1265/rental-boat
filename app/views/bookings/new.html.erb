@@ -1,14 +1,13 @@
-<div class="boat-header" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+<div class="boat-header" style="background-image: url('https://source.unsplash.com/random/?yacht')"></div>
   <div class="container margin-top-negative">
     <div class="row">
       <div class="col-12 col-md-6 offset-lg-3">
         <div class="bg-white rounded p-3 shadow">
-
-          <h3>Book the <%= @boat.name %></h3>
-
+          <h3>Book the <%= @boat_to_book.name %></h3>
           <%= simple_form_for @booking do |f| %>
             <%= f.input :start_date %>
             <%= f.input :end_date %>
+            <p><strong> Total amount: <%= @boat_to_book.price_per_day %> CHF</strong></p>
             <%= f.submit class: 'btn btn-primary' %>
           <% end %>
         </div>
