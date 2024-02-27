@@ -8,8 +8,8 @@
           <%= f.input :description, placeholder: 'write a description' %>
           <%= f.input :price_per_day %>
           <%= f.input :year_production %>
-          <%= f.input :user_id, as: :hidden, input_html: { value: 2 } %> <!--Value will be changed with current_user.id-->
-          <%= f.input :photo, as: :file %>
+          <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %> <!--Value will be changed with current_user.id-->
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
           <%= f.submit class: 'btn btn-primary' %>
         <% end %>
       </div>
