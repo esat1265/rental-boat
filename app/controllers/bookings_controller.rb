@@ -9,9 +9,10 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.boat = @boat
-    debugger
+    @booking.user_id = current_user.id
+    # debugger
     if @booking.save
-      redirect_to boat_path(@boat)
+      redirect_to boats_path(@boat)
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,6 +25,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :price_per_day, :year_production, :photo)
+    params.require(:booking).permit(:start_date, :end_date, :total_amount)
   end
 end
