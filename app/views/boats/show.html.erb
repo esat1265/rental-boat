@@ -9,7 +9,11 @@
       </div>
       <div class="boat-show-card">
         <h3>Pictures of the boat</h3>
+        <% if @boat.photo.attached? %>
+          <%= cl_image_tag(@boat.photo.key, height: 350, crop: :fill)%>
+         <% else %>
         <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+        <% end %>
       </div>
     </div>
 
