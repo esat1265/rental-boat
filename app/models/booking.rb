@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :boat
   belongs_to :user
+  has_many :reviews
 
   after_save :calculate_amount
 
