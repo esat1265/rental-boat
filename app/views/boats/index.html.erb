@@ -1,5 +1,9 @@
 <div class="container mt-3">
-  <h1>Welcome Aboard, (User)!</h1>
+  <% if user_signed_in? %>
+  <h1>Welcome Aboard, <%= current_user.first_name %>!</h1>
+<% else %>
+  <h1>Welcome Aboard, Guest!</h1>
+<% end %>
   <h2>Set Sail with Our <%= Boat.count %> Fantastic Boats.</h2>
 
   <div class="row">
