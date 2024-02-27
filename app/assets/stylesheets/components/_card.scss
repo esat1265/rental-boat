@@ -3,7 +3,16 @@ body {
 }
 .card:hover {
   transform: scale(1.1);
+  box-shadow: 0 4px 8px 0 rgba(33, 140, 207, 0.2);
 }
 .card {
   transition: transform 0.5s;
+  border-radius: 10px!important;
+}
+.boat-card-image img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px!important;
+  border-top-right-radius: 10px!important;
 }
