@@ -9,7 +9,7 @@
           <p>
             <small>Price per day: <%= @boat_to_book.price_per_day %> CHF</small>
           </p>
-          <%= simple_form_for @booking do |f| %>
+          <%= simple_form_for [@boat, @booking] do |f| %>
             <%= f.input :start_date, as: :string,
               input_html: { data: { controller: "datepicker", action: 'change->get-sum-days#sum', get_sum_days_target: "start_date"} }
             %>
