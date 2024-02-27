@@ -8,6 +8,13 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @booking.boat = @boat
+    debugger
+    if @booking.save
+      redirect_to boat_path(@boat)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
