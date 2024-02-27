@@ -13,12 +13,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
   <body>
   <br>
     <%= render "shared/flashes" %>
-    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
       <div class="container-fluid">
         <div class="navbar-text">
           <%= link_to boats_path, class: "navbar-brand" do %>
@@ -26,35 +27,45 @@
           <%= "AirbnBoat" %>
           <% end %>
         </div>
+        <div class="search-form">
+          <%= simple_form_for :search, url: boats_path, method: :get do |f| %>
+          <%= f.input :boat_name, label: "Look for a boat" %>
+          <div class="form-group">
+            <label for="start_date">Pick up date</label>
+            <input id="start_date" type="text" class="form-control" data-controller="datepicker" data-datepicker-target="start" name="search[start_date]">
+          </div>
+          <div class="form-group">
+            <label for="end_date">Return date</label>
+            <input id="end_date" type="text" class="form-control" data-controller="datepicker" data-datepicker-target="end" name="search[end_date]">
+          </div>
+          <div class="bouton">
+            <%= f.submit "Rechercher", class: "btn btn-primary" %>
+          </div>
+          <% end %>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
-            <%# if user_signed_in? %>
-              <li class="nav-item active">
-                <%= link_to "Home", boats_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Messages", "#", class: "nav-link" %>
-              </li>
-              <li class="nav-item dropdown">
-                <%= image_tag "avatar.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <%= link_to "Sign up", "/users/sign_up", class: "dropdown-item" %>
-                  <%= link_to "Log in", "/users/sign_in", class: "dropdown-item" %>
-                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-                </div>
-              </li>
-            <%# else %>
-              <!--li class="nav-item"-->
-                <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
-              <!--/li-->
-            <%# end %>
-          </ul>
-        </div>
+            <li class="nav-item active">
+              <%= link_to "Home", boats_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Messages", "#", class: "nav-link" %>
+            </li>
+            <li class="nav-item dropdown">
+              <%= image_tag "avatar.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "Sign up", "/users/sign_up", class: "dropdown-item" %>
+                <%= link_to "Log in", "/users/sign_in", class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+              </div>
+            </li>
+        </ul>
       </div>
     </div>
+  </div>
 
     <div class="container">
       <%= yield %>
