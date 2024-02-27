@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_boat, only: %i[new create]
   before_action :authenticate_user!
 
