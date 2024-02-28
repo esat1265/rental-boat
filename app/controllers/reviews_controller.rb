@@ -11,9 +11,9 @@ class ReviewsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @review = @booking.build_review(review_params)
     if @review.save
-      redirect_to bookings_path, notice: 'Votre review a été créée avec succès.'
+      redirect_to boats_path(@booking.boat_id), notice: 'Review was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
