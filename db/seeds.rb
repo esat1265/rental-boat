@@ -1,3 +1,5 @@
+require "open-uri"
+
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -8,6 +10,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Booking.destroy_all
+Boat.destroy_all
 User.destroy_all
 
 # Array of dummy user data
@@ -55,15 +59,18 @@ price_range = (50..500)
 year_range = (2000..2024)
 
 # Create 10 boat records
-10.times do
-  Boat.create(
+
+10.times do |i|
+  boat = Boat.new(
     name: boat_names.sample,
     description: boat_descriptions.sample,
     price_per_day: rand(price_range),
     year_production: rand(year_range),
-    image_url: "https://example.com/boat-image.jpg",
-    user_id: [1, 2].sample
+    user: User.all.sample
   )
+  3.times do |j|
+    file = URI.open("https://picsum.photos/374/250")
+    boat.photos.attach(io: file, filename: "boat-image.jpg", content_type: "image/jpg")
+  end
+  boat.save!
 end
-
-puts "Seed data generated successfully!"
