@@ -46,40 +46,34 @@
   </div>
 
   <!-- Bookings table -->
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-5">
-      <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4 class="text-right">My Bookings</h4>
-        </div>
-
-        <div class="row mt-2">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Boat</th>
-                <th scope="col">From</th>
-                <th scope="col">To</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% current_user.bookings.each do |booking| %>
-                <tr>
-                  <th scope="row"></th>
-                  <td><%= booking.boat.name %></td>
-                    <td data-controller="datepicker" data-target="startDate"><%= booking.start_date %> </td>
-                    <td data-controller="datepicker" data-target="endDate"><%= booking.end_date %></td>
-                    <td><%= link_to "Leave a review", boat_path(booking.boat.id), class: "btn btn-secondary"%></td>
-                  <%# <td><button class="btn btn-secondary">Leave a review</button></td> %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+  <div class="booking-h3-style">
+    <h3>My bookings</h3>
+  </div>
+  <div class="row" id="profile-cards">
+  <% current_user.bookings.each do |booking| %>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem; background-image: url('https://source.unsplash.com/random/?boat'); background-size: cover; color: white; overflow: hidden; margin-bottom: 20px">
+        <div class="card-body" style="background-color: rgba(0,0,0,0.5);">
+          <h5 class="card-title"><strong><%= booking.boat.name %></strong></h5>
+          <p class="card-text">
+            Rental dates: <%= booking.start_date %> to <%= booking.end_date %>
+          </p>
+          <p class="card-text">
+            Booking cost: <%= booking.total_amount %> €
+          </p>
+          <% if booking.review.nil? %>
+          <div class="btn-cards-booking">
+            <%= link_to 'Manage my booking', edit_booking_path(booking), class: "btn btn-outline-info" %>
+            <% if Date.today > booking.end_date %>
+              <%= link_to 'Add a review', new_booking_review_path(booking_id: booking.id), class: "btn btn-outline-info" %>
+            <% end %>
+          </div>
+          <% else %>
+            <p>Review already sent</p>
+          <% end %>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
+</div>
 </div>
