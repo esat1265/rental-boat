@@ -1,0 +1,6 @@
+<%= simple_form_for([@booking, @review]) do |f| %>
+  <%= f.input :booking_id, as: :hidden, input_html: { value: @booking.id } %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.button :submit %>
+<% end %>
