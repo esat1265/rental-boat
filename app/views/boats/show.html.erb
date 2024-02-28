@@ -46,8 +46,25 @@
           <div class="flex ms-3">
             Year production: <strong><%= @boat.year_production %></strong>
           </div>
+
+          <% if @boat.bookings.present? %>
+              <div class="flex ms-3 bg-danger-subtle mt-3 ps-1">
+                Not available:
+            <% @bookings.each do |booking|%>
+                <br>
+                from: <strong> <%=booking.start_date%></strong> to: <strong> <%=booking.end_date%></strong>
+              <%end%>
+              </div>
+            <% else %>
+              <div class="flex ms-3 mt-2">
+                Available: <strong> NOW 🚢</strong>
+              </div>
+          <% end %>
         </div>
       </div>
+      <!--<div class="boat-show-card">
+        <input type="text" id="calendar" data-controller="datepicker" class="flatpickr-input active">
+      </div>-->
     </div>
   </div>
 </div>
