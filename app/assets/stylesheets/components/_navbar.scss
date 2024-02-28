@@ -2,68 +2,89 @@
   justify-content: space-between;
   background: rgb(94, 144, 176);
 }
+.navbar-lewagon .navbar-collapse,
+.search-navbar,
+.navbar-nav,
+.search-form,
+.form-group,
+.bouton,
+.container-fluid {
+  display: flex;
+}
+.search-navbar,
+.navbar-nav,
+.search-form,
+.form-group,
+.bouton {
+  flex-direction: row;
+}
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
-
-.navbar-lewagon .navbar-brand img {
-  width: 70px;
-  height: 70px;
+.navbar-lewagon .navbar-brand img,
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
-.navbar-text a {
+
+.navbar-text a,
+.navbar-brand .brand-name,
+.btn.search-btn,
+.btn.add-boat-btn {
   color: rgb(88, 201, 250);
   font-family: "Nunito", sans-serif;
   font-weight: bold;
   text-decoration: none !important;
 }
-
-#navbarSupportedContent {
+#navbarSupportedContent,
+.search-navbar {
   border: 1px solid rgb(205, 201, 201);
   border-radius: 20px;
 }
 
-.container-fluid {
-  display: flex;
-}
-
 .search-navbar {
-  display: flex;
   gap: 15px;
-  flex-direction: row;
-  border: 1px solid lightgrey;
-  border-radius: 20px;
   padding: 15px;
   margin-bottom: 5px;
   margin-right: 50px;
   font-size: 13px;
 }
 
-.navbar-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.search-form {
-  display: flex;
-  flex-direction: row;
-}
-
-.form-group,
-.bouton {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 1px solid red;
-}
 
 .form-group label,
 .form-group input,
-.bouton input[type="submit"] {
+.bouton input[type="submit"],
+.search-navbar .form-control {
   margin-right: 10px;
+}
+.header .navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.navbar-brand .logo {
+  height: 40px;
+}
+.nav-link,
+.btn.search-btn,
+.btn.add-boat-btn {
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: #484848;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+a:link {
+  text-decoration: none !important;
 }
 
 .dropdown {
