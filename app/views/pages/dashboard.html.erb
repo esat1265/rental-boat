@@ -63,13 +63,15 @@
           </p>
           <% if booking.review.nil? %>
           <div class="btn-cards-booking">
-            <%= link_to 'Manage my booking', edit_booking_path(booking), class: "btn btn-outline-info" %>
+            <% if Date.today < booking.start_date %>
+              <%= link_to 'Manage my booking', edit_booking_path(booking), class: "btn btn-outline-info" %>
+            <% end %>
             <% if Date.today > booking.end_date %>
               <%= link_to 'Add a review', new_booking_review_path(booking_id: booking.id), class: "btn btn-outline-info" %>
             <% end %>
           </div>
           <% else %>
-            <p>Review already sent</p>
+            <p>Review already sent <i class="fa-solid fa-check"></i></p>
           <% end %>
         </div>
       </div>
