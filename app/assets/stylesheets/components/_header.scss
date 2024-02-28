@@ -1,5 +1,8 @@
 .header .navbar {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%
 }
 
 .navbar-brand .logo {
@@ -10,7 +13,7 @@
   color: darkblue;
   font-weight: bold;
   margin-left: 10px;
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 .search-navbar .form-control {
@@ -31,6 +34,9 @@
   background-color: #b5d9ff;
   border-color: darkblue;
 }
+a:link {  text-decoration: none !important;
+}
+
 
 .nav-link {
   color: #484848;
@@ -43,10 +49,6 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-}
-.navbar-nav{
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .nav-link{
