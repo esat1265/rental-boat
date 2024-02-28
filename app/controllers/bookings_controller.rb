@@ -3,10 +3,23 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :authenticate_user!
 
-  def index
-    @bookings = current_user.bookings.includes(:boat)
+  # def index
+  #   @bookings = current_user.bookings.includes(:boat)
+  # end
+
+  def edit
+    @booking = current_user.bookings.find(params[:id])
   end
 
+  def update
+    @booking = current_user.bookings.find(params[:id])
+
+    if @booking.update(booking_params)
+      redirect_to dashboard_path, notice: 'Booking was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def new
     @boat_to_book = @boat

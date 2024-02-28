@@ -1,0 +1,61 @@
+.header .navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.navbar-brand .logo {
+  height: 40px;
+}
+
+.navbar-brand .brand-name {
+  color: darkblue;
+  font-weight: bold;
+  margin-left: 10px;
+  text-decoration: none !important;
+}
+
+.search-navbar .form-control {
+  margin-right: 10px;
+}
+
+.btn.search-btn {
+  color: darkblue;
+  background-color: #b5d9ff;
+  border-color: darkblue;
+}
+
+.btn.add-boat-btn {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-style: italic;
+  color: darkblue;
+  background-color: #b5d9ff;
+  border-color: darkblue;
+}
+a:link {  text-decoration: none !important;
+}
+
+
+.nav-link {
+  color: #484848;
+}
+.nav-link:hover, .nav-link:focus {
+  color: #FF5A5F;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.nav-link{
+  justify-content: space-between;
+
+}
+
+.nav-item{
+  margin-left: 20px;
+}

@@ -1,0 +1,20 @@
+<%= form_for [@boat, @booking], html: { class: 'needs-validation', novalidate: "" } do |f| %>
+  <div class="mb-3">
+    <%= f.label :start_date, class: 'form-label' %>
+    <%= f.date_field :start_date, class: 'form-control', required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :end_date, class: 'form-label' %>
+    <%= f.date_field :end_date, class: 'form-control', required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :comment, class: 'form-label' %>
+    <%= f.text_area :comment, rows: 3, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Update my booking', class: 'btn btn-primary' %>
+  </div>
+<% end %>

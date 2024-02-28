@@ -24,6 +24,7 @@ class BoatsController < ApplicationController
   def show
     @boat = Boat.find(params[:id])
     @bookings = @boat.bookings
+    @reviews = Review.where(booking: @bookings)
   end
 
   def create
