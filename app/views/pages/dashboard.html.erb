@@ -45,12 +45,26 @@
             <h4 class="text-right">My bookings</h4>
           </div>
           <div class="row mt-2">
-            <% current_user.bookings.each do |booking| %>
-              <div class="col-md-6">
-                <p><%= booking.boat.name %></p>
-                <p>From <%= booking.start_date %> to <%= booking.end_date %></p>
-              </div>
-            <% end %>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Boat</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% current_user.bookings.each do |booking| %>
+                    <tr>
+                      <th scope="row"></th>
+                      <td><%= booking.boat.name %></td>
+                      <td><%= booking.start_date %></td>
+                      <td><%= booking.end_date %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
           </div>
         </div>
       </div>
