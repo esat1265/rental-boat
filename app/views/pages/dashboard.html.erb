@@ -1,0 +1,84 @@
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+
+    <!-- User Profile (on the left) -->
+    <div class="col-md-3 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+        <span class="font-weight-bold"> <%= current_user.first_name %> <%= current_user.last_name %> </span>
+        <span class="text-black-50"><%= current_user.email %></span>
+      </div>
+    </div>
+
+    <!-- Profile Settings (on the right) -->
+    <div class="col-md-5">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Profile Settings</h4>
+        </div>
+
+        <%= simple_form_for current_user, html: { class: 'mt-2' } do |f| %>
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :last_name, label: "Last name",  disabled: true %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :first_name, label: "First name", disabled: true %>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <%= f.input :email, label: "Email" %>
+            </div>
+            <div class="col-md-12">
+              <%= f.input :created_at, label: "Account created date", disabled: true, as: :string,
+               input_html: { data: { controller: "datepicker"} } %>
+            </div>
+          </div>
+
+          <div class="mt-5 text-center">
+            <%= f.submit "Edit profile", class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bookings table -->
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">My Bookings</h4>
+        </div>
+
+        <div class="row mt-2">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Boat</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% current_user.bookings.each do |booking| %>
+                <tr>
+                  <th scope="row"></th>
+                  <td><%= booking.boat.name %></td>
+                    <td data-controller="datepicker" data-target="startDate"><%= booking.start_date %> </td>
+                    <td data-controller="datepicker" data-target="endDate"><%= booking.end_date %></td>
+                  <td><button class="btn btn-secondary">Leave a review</button></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
