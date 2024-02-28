@@ -3,9 +3,13 @@ class BoatsController < ApplicationController
 
   def index
     if params[:search].present?
-      start_date = Date.parse(params[:search][:start_date])
-      end_date = Date.parse(params[:search][:end_date])
-      @boats = Boat.available(start_date, end_date)
+      if params[:search][:start_date].present? && params[:search][:end_date].present?
+        start_date = Date.parse(params[:search][:start_date])
+        end_date = Date.parse(params[:search][:end_date])
+        @boats = Boat.available(start_date, end_date)
+      end
+      boat_name = params[:search][:boat_name]
+      @boats = Boat.where("name ILIKE ?", "%#{boat_name}%")
     else
       @boats = Boat.all
     end
