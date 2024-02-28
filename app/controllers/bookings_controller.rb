@@ -1,6 +1,15 @@
 class BookingsController < ApplicationController
   before_action :set_boat, only: %i[new create]
 
+  before_action :authenticate_user!, only: [:new, :create]
+
+  before_action :authenticate_user!
+
+  def index
+    @bookings = current_user.bookings
+  end
+
+
   def new
     @boat_to_book = @boat
     @booking = Booking.new
@@ -25,6 +34,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :total_amount)
+    params.require(:booking).permit(:start_date, :end_date, :total_amount, :comment)
   end
 end

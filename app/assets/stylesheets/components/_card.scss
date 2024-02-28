@@ -1,6 +1,10 @@
 body {
-  margin: 3em;
-}
+
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  };
+
 .card:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 8px 0 rgba(33, 140, 207, 0.2);
@@ -9,7 +13,8 @@ body {
   transition: transform 0.5s;
   border-radius: 10px!important;
 }
-.boat-card-image img {
+
+.boat-img {
   height: 250px;
   width: 100%;
   object-fit: cover;

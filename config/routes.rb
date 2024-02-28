@@ -9,9 +9,10 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
-  resources :bookings, only: [:index]
-
+  resources :bookings, only: [:index] do
+    resources :reviews, only: [:new, :create]
+  end
+  
   get 'dashboard', to: 'pages#dashboard'
   resources :users, only: [:update]
-
 end
