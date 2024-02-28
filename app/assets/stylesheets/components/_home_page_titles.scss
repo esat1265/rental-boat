@@ -1,8 +1,10 @@
-
-
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 h1 {
@@ -20,12 +22,12 @@ h1 {
 
 h2:hover {
   transform: scale(1.1);
-    color: #072442;
+  color: #072442;
 }
 
 h1:hover {
   transform: scale(1.1);
-    color: #000000;
+  color: #000000;
 }
 
 h2 {
@@ -35,6 +37,10 @@ h2 {
   padding-bottom: 200px;
   animation: fadeIn 3s ease-in-out;
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
 
-
+h3 {
+  padding: 20px;
+  border-bottom: 0.4px solid lightgrey;
+  margin-bottom: 30px;
 }

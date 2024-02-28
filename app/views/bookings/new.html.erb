@@ -17,7 +17,7 @@
               input_html: { data: { controller: "datepicker", action: 'change->get-sum-days#sum', get_sum_days_target: "end_date" } }
             %>
 
-              <%= f.input :comment, label: false, placeholder: 'Add a comment...' %>
+            <%= f.input :comment, label: false, placeholder: 'Add a comment...' %>
             <p data-get-sum-days-target="amount" class="fs-4"> </p>
             <%= f.submit class: 'btn btn-primary' %>
           <% end %>
