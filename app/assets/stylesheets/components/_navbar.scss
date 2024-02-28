@@ -12,11 +12,11 @@
   height: 70px;
 }
 
-.navbar-text a{
+.navbar-text a {
   color: rgb(88, 201, 250);
   font-family: "Nunito", sans-serif;
   font-weight: bold;
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 #navbarSupportedContent {
@@ -40,7 +40,7 @@
   font-size: 13px;
 }
 
-.navbar-nav{
+.navbar-nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -64,4 +64,9 @@
 .form-group input,
 .bouton input[type="submit"] {
   margin-right: 10px;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
 }
