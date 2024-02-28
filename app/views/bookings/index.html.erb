@@ -1,0 +1,21 @@
+<h1>My Bookings</h1>
+
+<div class="row">
+  <% @bookings.each do |booking| %>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem; background-image: url('https://source.unsplash.com/random/?boat'); background-size: cover; color: white; overflow: hidden">
+        <div class="card-body" style="background-color: rgba(0,0,0,0.5);">
+          <h5 class="card-title"><%= booking.boat.name %></h5>
+          <p class="card-text">
+            Rental dates: <%= booking.start_date %> to <%= booking.end_date %>
+          </p>
+          <% if booking.review.nil? %>
+            <%= link_to 'Add a review', new_booking_review_path(booking_id: booking.id), class: "btn btn-primary" %>
+          <% else %>
+            <p>Review already sent</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

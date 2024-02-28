@@ -1,6 +1,20 @@
-<%= simple_form_for([@booking, @review]) do |f| %>
-  <%= f.input :booking_id, as: :hidden, input_html: { value: @booking.id } %>
-  <%= f.input :content %>
-  <%= f.input :rating %>
-  <%= f.button :submit %>
+<%= form_for([@booking, @booking.build_review], html: { class: 'review-form' }, data: { turbo: false }) do |f| %>
+  <div class="booking-info">
+    <p><strong>Boat:</strong> <%= @booking.boat.name %></p>
+    <p><strong>Dates:</strong> <%= @booking.start_date %> to <%= @booking.end_date %></p>
+  </div>
+
+  <div class="field">
+    <%= f.label :rating, 'Rating (0 to 5)' %>
+    <%= f.number_field :rating, in: 0..5, step: 1, required: true, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comment, 'Comment (min 6 characters)' %>
+    <%= f.text_area :comment, minlength: 6, required: true, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: 'btn btn-primary' %>
+  </div>
 <% end %>
