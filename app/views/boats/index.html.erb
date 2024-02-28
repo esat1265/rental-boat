@@ -12,7 +12,7 @@
         <h1>Welcome Aboard, Guest!</h1>
       <% end %>
     <h2>Set Sail with Our <%= @boats.count %> Fantastic Boats.</h2>
- </div>
+</div>
 
 
   <div class="row">
@@ -31,7 +31,7 @@
             <% else %>
               <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
             <% end %>
-          </div>
+            </div>
               <button class="carousel-control-prev" type="button" data-bs-target="<%= "#boatCarousel-#{boat.id}"%>" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -41,7 +41,7 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-           </div>
+          </div>
           <div class="card-body d-flex flex-column flex-grow-1 position-relative">
             <h5 class="card-title text-dark"><%= boat.name %></h5>
             <p class="card-text flex-grow-1 text-dark"><%= boat.description %></p>

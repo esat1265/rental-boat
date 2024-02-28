@@ -1,30 +1,25 @@
 class ReviewsController < ApplicationController
-  before_action :set_booking, only: [:new, :create]
+  before_action :authenticate_user!
 
   def new
-    @review = Review.new
-    @bookings = current_user.bookings
+    @booking = Booking.find(params[:booking_id])
+    @review = @booking.build_review
   end
 
+
   def create
-    @review = Review.new(review_params)
-    @review.user = current_user
+    @booking = Booking.find(params[:booking_id])
+    @review = @booking.build_review(review_params)
     if @review.save
-      redirect_to reviews_path, notice: 'Review was successfully created.'
+      redirect_to bookings_path, notice: 'Votre review a été créée avec succès.'
     else
-      @bookings = current_user.bookings
       render :new
     end
   end
 
   private
 
-  def set_booking
-    @booking = Booking.find(params[:booking_id])
-  end
-
-
   def review_params
-    params.require(:review).permit(:content, :rating, :booking_id)
+    params.require(:review).permit(:rating, :comment)
   end
 end
