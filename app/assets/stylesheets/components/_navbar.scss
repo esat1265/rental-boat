@@ -29,6 +29,7 @@
   border-radius: 50%;
 }
 
+
 .navbar-text a,
 .navbar-brand .brand-name,
 .btn.search-btn,
@@ -51,6 +52,7 @@
   margin-right: 50px;
   font-size: 13px;
 }
+
 
 .form-group label,
 .form-group input,
@@ -83,4 +85,9 @@
 
 a:link {
   text-decoration: none !important;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
 }
