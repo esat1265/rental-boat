@@ -70,8 +70,8 @@
                 <tr>
                   <th scope="row"></th>
                   <td><%= booking.boat.name %></td>
-                  <td><%= booking.start_date %></td>
-                  <td><%= booking.end_date %></td>
+                    <td data-controller="datepicker" data-target="startDate"><%= booking.start_date %> </td>
+                    <td data-controller="datepicker" data-target="endDate"><%= booking.end_date %></td>
                   <td><button class="btn btn-secondary">Leave a review</button></td>
                 </tr>
               <% end %>

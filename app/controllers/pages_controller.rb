@@ -5,6 +5,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-
+    flash.keep
   end
 end

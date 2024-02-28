@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     if @user.save
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: "Profile updated"
     else
       render :new, status: :unprocessable_entity
       redirect_to dashboard_path
