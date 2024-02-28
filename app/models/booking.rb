@@ -5,6 +5,10 @@ class Booking < ApplicationRecord
 
   after_save :calculate_amount
 
+  validates :end_date, presence: { message: "End date can't be blank" }
+  validates :start_date, presence: { message: "Start date can't be blank" }
+  validate :end_date_after_start_date
+
   private
 
   def calculate_amount
@@ -12,5 +16,10 @@ class Booking < ApplicationRecord
 
     total_amount = (end_date - start_date).to_i * boat.price_per_day
     self.update(total_amount: total_amount)
+  end
+
+  def end_date_after_start_date
+    return if end_date.blank? || start_date.blank?
+    errors.add(:end_date, "must be after start date") if end_date <= start_date
   end
 end

@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @boat_to_book = @boat
     @booking = Booking.new(booking_params)
     @booking.boat = @boat
     @booking.user_id = current_user.id
