@@ -1,4 +1,10 @@
-
+<div class="container mt-3">
+  <% if user_signed_in? %>
+  <h1>Welcome Aboard, <%= current_user.first_name %>!</h1>
+<% else %>
+  <h1>Welcome Aboard, Guest!</h1>
+<% end %>
+  <h2>Set Sail with Our <%= Boat.count %> Fantastic Boats.</h2>
 
 <div class="container mt-3">
   <div class="video-bck">
@@ -8,6 +14,7 @@
   <h1>Welcome Aboard, (User)!</h1>
   <h2>Set Sail with Our <%= Boat.count %> Fantastic Boats.</h2>
   </div>
+
   <div class="row">
     <% @boats.each do |boat| %>
         <%= link_to boat_path(boat), class: "col-md-4 mb-4 text-decoration-none" do %>
