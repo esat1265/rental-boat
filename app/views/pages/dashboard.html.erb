@@ -70,10 +70,13 @@
                 <tr>
                   <th scope="row"></th>
                   <td><%= booking.boat.name %></td>
-                    <td data-controller="datepicker" data-target="startDate"><%= booking.start_date %> </td>
-                    <td data-controller="datepicker" data-target="endDate"><%= booking.end_date %></td>
+                  <td data-controller="datepicker" data-target="startDate"><%= booking.start_date %> </td>
+                  <td data-controller="datepicker" data-target="endDate"><%= booking.end_date %></td>
+                  <% if booking.end_date < Date.today %>
                     <td><%= link_to "Leave a review", boat_path(booking.boat.id), class: "btn btn-secondary"%></td>
-                  <%# <td><button class="btn btn-secondary">Leave a review</button></td> %>
+                  <% else %>
+                    <td><button class="btn btn-secondary" disabled>Leave a review</button></td>
+                  <% end %>
                 </tr>
               <% end %>
             </tbody>
