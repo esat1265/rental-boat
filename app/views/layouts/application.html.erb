@@ -17,7 +17,7 @@
   </head>
 
   <body>
-  <br>
+
     <%= render "shared/flashes" %>
     <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
       <div class="container-fluid">
@@ -48,9 +48,11 @@
         </div>
       <% end %>
     </div>
+
     <% if user_signed_in? %>
       <%= button_to 'Add a new Boat', new_boat_path, method: :get, class: "btn btn-primary" %>
     <% end %>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

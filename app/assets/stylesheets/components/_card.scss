@@ -1,6 +1,10 @@
 body {
-  margin: 3em;
-}
+
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  };
+
 .card:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 8px 0 rgba(33, 140, 207, 0.2);
