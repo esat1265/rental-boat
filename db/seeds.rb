@@ -213,7 +213,7 @@ fake_comments = [
   "Absolutely breathtaking! The sunset views from the boat were unforgettable.",
   "Convenient location! The rental dock was easy to find with ample parking.",
   "An adventure to remember! The boat rental provided memories that will last a lifetime."
-
+]
 puts "Generate 50 fakes reviews with rating"
 50.times do |i|
   puts "Review #{i+1} created"

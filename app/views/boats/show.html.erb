@@ -44,20 +44,14 @@
 
       <!-- this boat owned by-->
       <div class="boat-show-card" id ='owned-by'>
-        <% if current_user.first_name.present? %>
-          <h6 class='ps-3'> This boat owned by <%= current_user.first_name %></h6>
-        <% else %>
-          <h6 class='ps-3'> This boat owned by owner</h6>
-        <% end %>
+          <h6 class='ps-3'> This boat owned by Marc </h6>
         <p class="boat-show-description ps-3">8 people · 3 cabins · 8 berths · 2 bathrooms</p>
       </div>
     <!--Description of owner -->
       <div class="boat-show-card">
-        <% if current_user.first_name.present? %>
-          <h4 class='ps-3'> Description of <%= current_user.first_name %>'s boat.</h4>
-        <% else %>
-          <h4 class='ps-3'> Description of owner</h4>
-        <% end %>
+
+          <h4 class='ps-3'> Description of Marc's boat.</h4>
+
         <p class="boat-show-description ps-3"> <%= @boat.description %></p>
       </div>
       <div class="boat-show-card">
