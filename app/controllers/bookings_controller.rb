@@ -15,8 +15,8 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.find(params[:id])
 
     if @booking.update(booking_params)
-      redirect_to dashboard_path, notice: 'Booking was successfully updated.'
-      flash.now[:notice] = "Your booking was successfully updated."
+      flash[:notice] = "Your booking was successfully updated."
+      redirect_to dashboard_path
     else
       render :edit, status: :unprocessable_entity
     end
