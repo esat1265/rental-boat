@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_boat, only: %i[new create]
+  before_action :set_boat, only: %i[new create edit update]
   before_action :authenticate_user!, only: [:new, :create]
   before_action :authenticate_user!
 
@@ -43,8 +43,14 @@ class BookingsController < ApplicationController
   private
 
   def set_boat
-    @boat = Boat.find(params[:boat_id])
+    if params[:action] == 'new' || params[:action] == 'create'
+      @boat = Boat.find(params[:boat_id])
+    elsif params[:action] == 'edit' || params[:action] == 'update'
+      booking = Booking.find(params[:id])
+      @boat = booking.boat
+    end
   end
+
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :total_amount, :comment)
