@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :boat
   belongs_to :user
   has_one :review
+  has_paper_trail save_changes: true
 
   after_save :calculate_amount
 
