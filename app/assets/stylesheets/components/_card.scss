@@ -5,12 +5,12 @@ body {
 }
 
 .card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px 0 rgba(33, 140, 207, 0.2);
+  transform: scale(1.02);
 }
 .card {
   transition: transform 0.5s;
   border-radius: 10px !important;
+  box-shadow: 0 18px 26px 0 rgba(6, 40, 62, 0.2);
 }
 
 .boat-img {

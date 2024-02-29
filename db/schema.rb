@@ -69,6 +69,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_141647) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "boat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boat_id"], name: "index_comments_on_boat_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -110,4 +118,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_141647) do
   add_foreign_key "boats", "users"
   add_foreign_key "bookings", "boats"
   add_foreign_key "bookings", "users"
+  add_foreign_key "comments", "boats"
 end
