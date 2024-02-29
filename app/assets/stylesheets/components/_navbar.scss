@@ -29,20 +29,28 @@
   border-radius: 50%;
 }
 
-
 .navbar-text a,
 .navbar-brand .brand-name,
-.btn.search-btn,
-.btn.add-boat-btn {
+.btn.search-btn {
   color: rgb(88, 201, 250);
   font-family: "Nunito", sans-serif;
   font-weight: bold;
   text-decoration: none !important;
 }
+
+.btn.add-boat-btn {
+  color: rgb(88, 201, 250);
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  text-decoration: none !important;
+  font-size: 15px;
+}
+
 #navbarSupportedContent,
 .search-navbar {
   border: 1px solid rgb(205, 201, 201);
   border-radius: 20px;
+  margin-left: 20px;
 }
 
 .search-navbar {
@@ -53,7 +61,6 @@
   font-size: 13px;
 }
 
-
 .form-group label,
 .form-group input,
 .bouton input[type="submit"],
@@ -61,7 +68,7 @@
   margin-right: 10px;
 }
 .header .navbar {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   width: 100%;
@@ -70,8 +77,7 @@
   height: 40px;
 }
 .nav-link,
-.btn.search-btn,
-.btn.add-boat-btn {
+.btn.search-btn {
   justify-content: space-between;
 }
 
