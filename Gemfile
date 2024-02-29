@@ -33,7 +33,7 @@ gem "devise"
 # gem "dotenv-rails"
 gem "cloudinary"
 gem "faker"
-
+gem "paper_trail"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

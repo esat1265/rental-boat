@@ -19,11 +19,58 @@
 }
 
 .margin-top-negative {
-  margin-top: -75px;
+  margin-top: 100px;
+}
+
+
+#owned-by > p {
+  font-weight: 250;
+  font-size: 15px;
+  margin-bottom: 0px;
+}
+
+#owned-by {
+  padding: 20px 10px;
+  margin-top: 10px;
+}
+
+#show-detail {
+  margin-top: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: -5px;
+}
+
+.grid-item {
+  padding: 5px;
+  text-align: center;
+}
+
+.big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.big .boat-img{
+  height: 100%;
 }
 
 .boat-img {
-  height: 350px;
-  background-position: center;
   background-size: cover;
+  background-position: center;
+  height: 200px;
+  padding: 5px;
+}
+
+#show-boat-name {
+  padding: 10px 20px
+}
+
+
+.grid-item .boat-img {
+  border-radius:0px !important;
 }

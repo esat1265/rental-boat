@@ -1,43 +1,85 @@
-<div class="boat-header" style="background-image:url('https://source.unsplash.com/random/?boat')"></div>
 <div class="container margin-top-negative">
-  <%= render "shared/flashes" %>
+  <!--title-->
   <div class="row">
-    <div class="col-8">
+    <h3 id="show-boat-name"><%=@boat.name %></h3>
+    <div class='d-flex'>
+      <p> ⭐4.4 (<%= @reviews.count %>) reviews</p>
+    </div>
+  </div>
+  <!--images-->
+  <div class="grid-container">
+    <div class="grid-item big">
+        <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+    </div>
+
+    <div class="grid-item">
+      <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+    </div>
+    <div class="grid-item">
+      <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+    </div>
+    <div class="grid-item">
+      <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+    </div>
+    <div class="grid-item">
+      <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8 ">
+
+     <!-- <div class="boat-show-card">
+        <div id="<%#= "boatCarousel-#{@boat.id}"%>" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <%# if @boat.photos.attached? %>-->
+            <%# @boat.photos.each do |photo| %>
+<!--              <div class="carousel-item active">-->
+                <%#= cl_image_tag(photo.key, height: 350, width: 650, crop: :fill) %>
+<!--              </div>-->
+            <%# end %>
+            <%# else %>
+<!--              <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>-->
+            <%# end %>
+
+      <!-- this boat owned by-->
+      <div class="boat-show-card" id ='owned-by'>
+        <% if current_user.first_name.present? %>
+          <h6 class='ps-3'> This boat owned by <%= current_user.first_name %></h6>
+        <% else %>
+          <h6 class='ps-3'> This boat owned by owner</h6>
+        <% end %>
+        <p class="boat-show-description ps-3">8 people · 3 cabins · 8 berths · 2 bathrooms</p>
+      </div>
+    <!--Description of owner -->
       <div class="boat-show-card">
-        <h1><%= @boat.name %></h1>
-        <p class="boat-show-description"><%= @boat.description %></p>
+        <% if current_user.first_name.present? %>
+          <h4 class='ps-3'> Description of <%= current_user.first_name %>'s boat.</h4>
+        <% else %>
+          <h4 class='ps-3'> Description of owner</h4>
+        <% end %>
+        <p class="boat-show-description ps-3"> <%= @boat.description %></p>
       </div>
       <div class="boat-show-card">
-        <h3>Pictures of the boat</h3>
-        <div id="<%= "boatCarousel-#{@boat.id}"%>" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <% if @boat.photos.attached? %>
-            <% @boat.photos.each do |photo| %>
-              <div class="carousel-item active">
-                <%= cl_image_tag(photo.key, height: 350, width: 650, crop: :fill) %>
+        <h3>Reviews</h3>
+        <% if  @reviews.any? %>
+          <div class="flex">
+            <% @reviews.each do |review| %>
+              <div class="flex ms-3">
+                <p><%= review.user.first_name %>: <strong><%= review.comment %></strong> (<%= review.created_at.strftime("%d.%m.%Y") %>)</p>
               </div>
             <% end %>
-            <% else %>
-              <div class="boat-img" style="background-image: url('https://source.unsplash.com/random/?boat')"></div>
-            <% end %>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="<%= "#boatCarousel-#{@boat.id}"%>" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="<%= "#boatCarousel-#{@boat.id}"%>" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
+          <% else %>
+          <div class="flex ms-3">
+            <p> No reviews yet...</p>
+          </div>
+        <% end %>
       </div>
     </div>
 
     <div class="col-4">
-      <div class="boat-show-card">
-        <%= link_to "Book this boat !", new_boat_booking_path(@boat), class: "btn btn-primary" %>
-      </div>
-      <div class="boat-show-card">
+      <div class="boat-show-card" id='show-detail'>
         <h3>Details</h3>
         <div class="flex">
           <div class="flex ms-3">
@@ -61,24 +103,10 @@
               </div>
           <% end %>
         </div>
-      </div>
-      <div class="boat-show-card">
 
-        <h3>Reviews</h3>
-        <% if  @reviews.any? %>
-          <div class="flex">
-            <% @reviews.each do |review| %>
-              <div class="flex ms-3">
-                <p><%= review.user.first_name %>: <strong><%= review.comment %></strong> (<%= review.created_at.strftime("%d.%m.%Y") %>)</p>
-              </div>
-            <% end %>
-          </div>
-          <% else %>
-          <div class="flex ms-3">
-            <p> No reviews yet...</p>
-          </div>
-        <% end %>
-
+        <div class="col-12 mt-3  ps-3 d-flex align-items-center">
+          <%= link_to "Book this boat !", new_boat_booking_path(@boat), class: "btn btn-primary ps-5 pe-5" %>
+        </div>
       </div>
     </div>
   </div>
