@@ -13,10 +13,10 @@
             <%= f.input :boat_name, placeholder: "Look for a boat", label: false, input_html: { class: "form-control" }, wrapper: false %>
           </div>
           <div class="form-group d-flex align-items-center">
-            <input id="start_date" type="text" class="form-control" placeholder="Pick up date" data-controller="datepicker" data-datepicker-target="start" name="search[start_date]">
+            <input id="start_date" type="text" class="form-control" placeholder="Check-in" data-controller="datepicker" data-datepicker-target="start" name="search[start_date]">
           </div>
           <div class="form-group d-flex align-items-center">
-            <input id="end_date" type="text" class="form-control" placeholder="Return date" data-controller="datepicker" data-datepicker-target="end" name="search[end_date]">
+            <input id="end_date" type="text" class="form-control" placeholder="Check-out" data-controller="datepicker" data-datepicker-target="end" name="search[end_date]">
           </div>
           <div class="button d-flex align-items-center">
             <%= f.submit "Search", class: "btn search-btn" %>

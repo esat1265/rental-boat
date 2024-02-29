@@ -77,7 +77,6 @@ boat_descriptions = [
     "Where luxury and adventure go hand in hand, your dream vessel awaits."
 ]
 
-
 keywords = [
   "boats",
   "yachts",
