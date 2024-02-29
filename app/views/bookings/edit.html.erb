@@ -1,12 +1,13 @@
-<div class="container">
-  <div class="row justify-content-center">
+<div class="container my-5">
+  <div class="row">
+    <!-- Colonne du formulaire de modification -->
     <div class="col-md-6">
-      <div class="form-home text-center my-5">
+      <div class="form-home text-center mb-5">
         <h3>Update Booking</h3>
         <p class="lead">Please fill in the details to update your booking.</p>
       </div>
 
-      <%= form_for [@boat, @booking], html: { class: 'needs-validation', novalidate: "" } do |f| %>
+      <%= form_for @booking, html: { class: 'needs-validation', novalidate: "" } do |f| %>
         <div class="mb-3">
           <%= f.label :start_date, class: 'form-label' %>
           <%= f.date_field :start_date, class: 'form-control', required: true %>
@@ -27,5 +28,3 @@
         </div>
       <% end %>
     </div>
-  </div>
-</div>
