@@ -1,21 +1,45 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="text-center mb-4">
+        <h3>Sign up</h3>
+        <p class="lead">You must be registered to book a boat.</p>
+      </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: "" }) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-inputs">
+        <div class="form-inputs mb-3">
+          <%= f.input :first_name, required: true, input_html: { class: 'form-control' }, label_html: { class: 'color-name-label' }, wrapper: false %>
+          <%= f.input :last_name, required: true, input_html: { class: 'form-control' }, label_html: { class: 'color-name-label' }, wrapper: false %>
+          <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email", class: 'form-control' }, label_html: { class: 'color-name-label' }, wrapper: false %>
+          <%= f.input :password,
+            required: true,
+            input_html: {
+              autocomplete: "new-password",
+              class: 'form-control',
+              placeholder: '6 characters minimum'
+            },
+            label_html: { class: 'color-name-label' },
+            wrapper: false,
+            hint: false %>
 
-    <%= f.input :first_name, required: true %>
-    <%= f.input :last_name, required: true %>
-    <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" } %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+            required: true,
+            input_html: {
+              autocomplete: "new-password",
+              class: 'form-control',
+              placeholder: '6 characters minimum'
+            },
+            label_html: { class: 'color-name-label' },
+            wrapper: false,
+            hint: false %>
+        </div>
 
+        <div class="form-actions text-center">
+          <%= f.button :submit, "Sign up", class: "btn btn-primary mb-1" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up", class: "btn btn-primary mb-1" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

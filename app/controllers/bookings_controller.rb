@@ -15,7 +15,8 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.find(params[:id])
 
     if @booking.update(booking_params)
-      redirect_to dashboard_path, notice: 'Booking was successfully updated.'
+      flash[:notice] = "Your booking was successfully updated."
+      redirect_to dashboard_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -31,9 +32,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.boat = @boat
     @booking.user_id = current_user.id
-    # debugger
     if @booking.save
-      redirect_to boats_path(@boat)
+      flash[:notice] = "Your booking was created successfully !"
+      redirect_to boat_path(@boat)
     else
       render :new, status: :unprocessable_entity
     end

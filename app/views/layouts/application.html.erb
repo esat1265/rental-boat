@@ -18,85 +18,12 @@
   </head>
 
   <body>
+    <%= render "shared/header" %>
+    <%= render "shared/flashes" %>
 
-    <%# <<<<<<<<<<<<>>>>>>>>>>>> %>
-<div class="header">
-  <%= render "shared/flashes" %>
-  <div class="navbar navbar-expand-sm navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-      <div class="navbar-brand">
-        <%= link_to boats_path do %>
-          <%= image_tag "boat-logo3.jpg", alt: "AirbnBoat Logo", class: "logo" %>
-          <span class="brand-name">AirbnBoat</span>
-        <% end %>
-      </div>
-      <div class="search-navbar d-flex">
-        <%= simple_form_for :search, url: boats_path, method: :get, html: { class: "search-form d-flex" } do |f| %>
-          <div class="form-group d-flex align-items-center">
-            <%= f.input :boat_name, placeholder: "Look for a boat", label: false, input_html: { class: "form-control" }, wrapper: false %>
-          </div>
-          <div class="form-group d-flex align-items-center">
-            <input id="start_date" type="text" class="form-control" placeholder="Pick up date" data-controller="datepicker" data-datepicker-target="start" name="search[start_date]">
-          </div>
-          <div class="form-group d-flex align-items-center">
-            <input id="end_date" type="text" class="form-control" placeholder="Return date" data-controller="datepicker" data-datepicker-target="end" name="search[end_date]">
-          </div>
-          <div class="button d-flex align-items-center">
-            <%= f.submit "Search", class: "btn search-btn" %>
-          </div>
-        <% end %>
-      </div>
-      <div class="add-boat-button">
-      <% if user_signed_in? %>
-        <%= button_to 'Add a new Boat', new_boat_path, method: :get, class: "btn add-boat-btn" %>
-      <% end %>
-      </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item active">
-            <%= link_to "Home", boats_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Profile", dashboard_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <%= image_tag "avatar.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <% if user_signed_in? %>
-              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-            <% else %>
-              <%= link_to "Log in", "/users/sign_in", class: "dropdown-item" %>
-            <% end %>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<%# <<<<<<<<<<<<>>>>>>>>>>>> %>
-
-    <div class="container">
+    <%= render "shared/container" %>
       <%= yield %>
-    </div>
-</div>
-    <div class="footer">
-    <div class="footer-content">
-        <p>© 2024 AirbnBoat, Inc. Made by Le Wagon Lausanne 1585</p>
-        <div class="social-media">
-            <p>Follow us on:</p>
-            <div class="footer-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
+    <%= render "shared/footer" %>
 
   </body>
 </html>
