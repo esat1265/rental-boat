@@ -25,6 +25,7 @@ class BoatsController < ApplicationController
     @boat = Boat.find(params[:id])
     @bookings = @boat.bookings
     @reviews = Review.where(booking: @bookings)
+    # flash.now[:notice] = "We have exactly #{@bookings.size} bookings available."
   end
 
   def create

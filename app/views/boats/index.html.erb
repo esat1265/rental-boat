@@ -4,7 +4,7 @@
 <div class="container mt-3">
   <div class="video-bck">
     <video autoplay muted loop class="myBackgroundVideo">
-    <source src="<%= video_path("background.mp4")%>" type="video/mp4">
+    <!-- <source src="<%= video_path("background.mp4")%>" type="video/mp4"> -->
     </video>
       <% if user_signed_in? %>
         <h1>Welcome Aboard, <%= current_user.first_name %>!</h1>
@@ -12,6 +12,7 @@
         <h1>Welcome Aboard, Guest!</h1>
       <% end %>
     <h2>Set Sail with Our <%= @boats.count %> Fantastic Boats.</h2>
+    <%= render "shared/flashes" %>
 </div>
 
 
