@@ -62,18 +62,23 @@
           <% end %>
         </div>
       </div>
-      <!--<div class="boat-show-card">
-        <input type="text" id="calendar" data-controller="datepicker" class="flatpickr-input active">
-      </div>-->
       <div class="boat-show-card">
+
         <h3>Reviews</h3>
-        <div class="flex">
-          <% @reviews.each do |review| %>
-            <div class="flex ms-3">
-              <p><%= review.user.first_name %>: <strong><%= review.comment %></strong> (<%= review.created_at.strftime("%d.%m.%Y") %>)</p>
-            </div>
-          <% end %>
-        </div>
+        <% if  @reviews.any? %>
+          <div class="flex">
+            <% @reviews.each do |review| %>
+              <div class="flex ms-3">
+                <p><%= review.user.first_name %>: <strong><%= review.comment %></strong> (<%= review.created_at.strftime("%d.%m.%Y") %>)</p>
+              </div>
+            <% end %>
+          </div>
+          <% else %>
+          <div class="flex ms-3">
+            <p> No reviews yet...</p>
+          </div>
+        <% end %>
+
       </div>
     </div>
   </div>
