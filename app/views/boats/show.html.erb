@@ -1,14 +1,10 @@
-<div class="boat-header" style="background-image:url('https://source.unsplash.com/random/?boat')"></div>
+
+<!--<div class="boat-header" style="background-image:url('https://source.unsplash.com/random/?boat')"></div>-->
+
 <div class="container margin-top-negative">
-  <%= render "shared/flashes" %>
-  <div class="row">
-    <div class="col-8">
+  <div class="row pt-3">
+    <div class="col-8 ">
       <div class="boat-show-card">
-        <h1><%= @boat.name %></h1>
-        <p class="boat-show-description"><%= @boat.description %></p>
-      </div>
-      <div class="boat-show-card">
-        <h3>Pictures of the boat</h3>
         <div id="<%= "boatCarousel-#{@boat.id}"%>" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <% if @boat.photos.attached? %>
@@ -30,6 +26,27 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
+      </div>
+
+      <div class="boat-show-card">
+        <h3><%=@boat.name %></h3>
+        <p class="boat-show-description ps-3"> <%= @boat.description %></p>
+      </div>
+      <div class="boat-show-card">
+        <h3>Reviews</h3>
+        <% if  @reviews.any? %>
+          <div class="flex">
+            <% @reviews.each do |review| %>
+              <div class="flex ms-3">
+                <p><%= review.user.first_name %>: <strong><%= review.comment %></strong> (<%= review.created_at.strftime("%d.%m.%Y") %>)</p>
+              </div>
+            <% end %>
+          </div>
+          <% else %>
+          <div class="flex ms-3">
+            <p> No reviews yet...</p>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -62,24 +79,7 @@
           <% end %>
         </div>
       </div>
-      <div class="boat-show-card">
 
-        <h3>Reviews</h3>
-        <% if  @reviews.any? %>
-          <div class="flex">
-            <% @reviews.each do |review| %>
-              <div class="flex ms-3">
-                <p><%= review.user.first_name %>: <strong><%= review.comment %></strong> (<%= review.created_at.strftime("%d.%m.%Y") %>)</p>
-              </div>
-            <% end %>
-          </div>
-          <% else %>
-          <div class="flex ms-3">
-            <p> No reviews yet...</p>
-          </div>
-        <% end %>
-
-      </div>
     </div>
   </div>
 </div>

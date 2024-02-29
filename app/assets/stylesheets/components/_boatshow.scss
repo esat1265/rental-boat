@@ -19,11 +19,12 @@
 }
 
 .margin-top-negative {
-  margin-top: -75px;
+  margin-top: 150px;
 }
 
 .boat-img {
-  height: 350px;
+  height: 350px !important;
   background-position: center;
   background-size: cover;
+  border-radius: 10px !important;
 }
