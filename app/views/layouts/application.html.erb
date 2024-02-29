@@ -20,7 +20,7 @@
   <body>
 
     <%# <<<<<<<<<<<<>>>>>>>>>>>> %>
-<div class="header">
+
   <%= render "shared/flashes" %>
   <div class="navbar navbar-expand-sm navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
@@ -76,27 +76,23 @@
       </div>
     </div>
   </div>
-</div>
-
-<%# <<<<<<<<<<<<>>>>>>>>>>>> %>
 
     <div class="container">
       <%= yield %>
     </div>
-</div>
-    <div class="footer">
-    <div class="footer-content">
+    </div>
+      <div class="footer">
+      <div class="footer-content">
         <p>© 2024 AirbnBoat, Inc. Made by Le Wagon Lausanne 1585</p>
         <div class="social-media">
-            <p>Follow us on:</p>
-            <div class="footer-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
+          <p>Follow us on:</p>
+          <div class="footer-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
   </body>
 </html>
