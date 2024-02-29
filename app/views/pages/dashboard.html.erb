@@ -47,6 +47,7 @@
 
   <div class="booking-h3-style">
     <h3>My bookings</h3>
+    <%= render "shared/flashes" %>
   </div>
   <div class="row" id="profile-cards">
   <% current_user.bookings.each do |booking| %>
