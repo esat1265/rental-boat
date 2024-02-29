@@ -7,22 +7,9 @@
           <span class="brand-name">AirbnBoat</span>
         <% end %>
       </div>
-      <div class="search-navbar d-flex">
-        <%= simple_form_for :search, url: boats_path, method: :get, html: { class: "search-form d-flex" } do |f| %>
-          <div class="form-group d-flex align-items-center">
-            <%= f.input :boat_name, placeholder: "Look for a boat", label: false, input_html: { class: "form-control" }, wrapper: false %>
-          </div>
-          <div class="form-group d-flex align-items-center">
-            <input id="start_date" type="text" class="form-control" placeholder="Check-in" data-controller="datepicker" data-datepicker-target="start" name="search[start_date]">
-          </div>
-          <div class="form-group d-flex align-items-center">
-            <input id="end_date" type="text" class="form-control" placeholder="Check-out" data-controller="datepicker" data-datepicker-target="end" name="search[end_date]">
-          </div>
-          <div class="button d-flex align-items-center">
-            <%= f.submit "Search", class: "btn search-btn" %>
-          </div>
-        <% end %>
       </div>
+
+      <div class="float-rigt">
       <div class="add-boat-button">
       <% if user_signed_in? %>
         <%= button_to 'Add a new Boat', new_boat_path, method: :get, class: "btn add-boat-btn" %>
@@ -58,3 +45,4 @@
       </div>
     </div>
   </div>
+</div>
