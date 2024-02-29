@@ -30,8 +30,9 @@ gem "jbuilder"
 gem "devise"
 
 # gem cloudinary
-gem "dotenv-rails"
+# gem "dotenv-rails"
 gem "cloudinary"
+gem "faker"
 gem "paper_trail"
 
 # Use Redis adapter to run Action Cable in production
