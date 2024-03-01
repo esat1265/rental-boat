@@ -41,8 +41,9 @@
         <div class="col-md-3"><strong>End Date Changes</strong></div>
         <div class="col-md-3"><strong>Total Amount Changes</strong></div>
       </div>
-      <% @booking.versions.each do |version| %>
+      <% @booking.versions.reverse.each_with_index do |version, index| %>
         <% booking_version = version.reify %>
+
         <div class="row mt-2">
           <div class="col-md-3">
             <%= version.created_at.strftime("%d/%m/%Y %H:%M") %>
@@ -64,6 +65,7 @@
             <div class="col-md-9">
               This is the creation of the booking.
             </div>
+
           <% end %>
         </div>
       <% end %>
