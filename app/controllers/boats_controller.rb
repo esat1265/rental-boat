@@ -15,7 +15,8 @@ class BoatsController < ApplicationController
         @boats = @boats.where("name ILIKE ?", "%#{boat_name}%")
       end
 
-      sort_boats(params[:search]) #
+      sort_boats(params[:search])
+      @boats = [] if @boats.empty?
     end
   end
 
