@@ -45,7 +45,7 @@
       <!-- this boat owned by-->
       <div class="boat-show-card" id ='owned-by'>
           <h6 class='ps-3'> This boat owned by Marc </h6>
-        <p class="boat-show-description ps-3">8 people · 3 cabins · 8 berths · 2 bathrooms</p>
+        <p class="boat-show-description ps-3">8 people · 3 cabins · 8 berths · 2 bathrooms · Year production: <strong><%= @boat.year_production %></strong></p>
       </div>
     <!--Description of owner -->
       <div class="boat-show-card">
@@ -75,19 +75,15 @@
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-4" id="detail-all-boat">
       <div class="boat-show-card" id='show-detail'>
         <h3>Details</h3>
         <div class="flex">
-          <div class="flex ms-3">
+          <div class="flex ms-3" id="boat-price-day">
             Price per day: <strong><%= @boat.price_per_day %> CHF</strong>
           </div>
-          <div class="flex ms-3">
-            Year production: <strong><%= @boat.year_production %></strong>
-          </div>
-
           <% if @boat.bookings.present? %>
-              <div class="flex ms-3 bg-danger-subtle mt-3 ps-1">
+              <div class="flex ms-3 bg-danger-subtle mt-3 ps-1" id="available-dates">
                 Not available:
             <% @bookings.each do |booking|%>
                 <br>
