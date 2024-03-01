@@ -44,6 +44,7 @@
   font-weight: bold;
   text-decoration: none !important;
   font-size: 15px;
+  align-items: center;
 }
 
 #navbarSupportedContent,
@@ -96,4 +97,24 @@ a:link {
 .dropdown {
   display: flex;
   align-items: center;
+}
+
+.float-rigt {
+  display: flex;
+  flex-direction: row;
+  margin-right: 40px;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.add-boat-button {
+  display: flex;
+  align-items: center;
+  margin-top: 3px;
+}
+
+.navbar-nav.me-auto {
+  justify-content: space-around;
+  display: flex;
 }
