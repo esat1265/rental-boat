@@ -4,4 +4,3 @@ import "controllers";
 import "@popperjs/core";
 import "bootstrap";
 import "flatpickr";
-import swal from "sweetalert";
