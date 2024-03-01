@@ -30,47 +30,78 @@
     </div>
 
 <div class="container my-5">
-  <div class="card">
-    <div class="card-header">
-      Summary of Booking Changes
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-3"><strong>Modification Date</strong></div>
-        <div class="col-md-3"><strong>Start Date Changes</strong></div>
-        <div class="col-md-3"><strong>End Date Changes</strong></div>
-        <div class="col-md-3"><strong>Total Amount Changes</strong></div>
-      </div>
-      <% @booking.versions.reverse.each_with_index do |version, index| %>
-        <% booking_version = version.reify %>
-
-        <div class="row mt-2">
-          <div class="col-md-3">
-            <%= version.created_at.strftime("%d/%m/%Y %H:%M") %>
-          </div>
-          <% if booking_version %>
-            <div class="col-md-3">
-              From: <%= booking_version.start_date %> <br>
-              To: <%= version.next&.reify&.start_date || @booking.start_date %>
-            </div>
-            <div class="col-md-3">
-              From: <%= booking_version.end_date %> <br>
-              To: <%= version.next&.reify&.end_date || @booking.end_date %>
-            </div>
-            <div class="col-md-3">
-              From: <%= booking_version.total_amount %> <br>
-              To: <%= version.next&.reify&.total_amount || @booking.total_amount %>
-            </div>
-          <% else %>
-            <div class="col-md-9">
-              This is the creation of the booking.
-            </div>
-
-          <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Summary of Booking Changes
         </div>
-      <% end %>
+        <div class="card-body">
+          <div class="row">
+            <!-- Modification Date -->
+            <div class="col-md-3">
+              <h5 class="card-title">Modification Date</h5>
+              <% @booking.versions.each do |version| %>
+                <% booking_version = version.reify %>
+                <% next unless booking_version %>
+                <div class="mb-2"> <!-- Ajout d'une marge en bas pour chaque élément -->
+                  <p class="card-text">
+                    <%= version.created_at.strftime("%d/%m/%Y %H:%M") %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+
+            <!-- Start Date Changes -->
+            <div class="col-md-3">
+              <h5 class="card-title">Start Date Changes</h5>
+              <% @booking.versions.each do |version| %>
+                <% booking_version = version.reify %>
+                <% next unless booking_version %>
+                <div class="mb-2"> <!-- Ajout d'une marge en bas pour chaque élément -->
+                  <p class="card-text">
+                    From: <%= booking_version.start_date %> <br>
+                    To: <%= version.next&.reify&.start_date || @booking.start_date %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+
+            <!-- End Date Changes -->
+            <div class="col-md-3">
+              <h5 class="card-title">End Date Changes</h5>
+              <% @booking.versions.each do |version| %>
+                <% booking_version = version.reify %>
+                <% next unless booking_version %>
+                <div class="mb-2"> <!-- Ajout d'une marge en bas pour chaque élément -->
+                  <p class="card-text">
+                    From: <%= booking_version.end_date %> <br>
+                    To: <%= version.next&.reify&.end_date || @booking.end_date %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+
+            <!-- Total Amount Changes -->
+            <div class="col-md-3">
+              <h5 class="card-title">Total Amount Changes</h5>
+              <% @booking.versions.each do |version| %>
+                <% booking_version = version.reify %>
+                <% next unless booking_version %>
+                <div class="mb-2"> <!-- Ajout d'une marge en bas pour chaque élément -->
+                  <p class="card-text">
+                    From: <%= booking_version.total_amount %> <br>
+                    To: <%= version.next&.reify&.total_amount || @booking.total_amount %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
   </div>
 </div>
