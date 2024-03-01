@@ -53,6 +53,7 @@
           <h4 class='ps-3'> Description of Marc's boat.</h4>
 
         <p class="boat-show-description ps-3"> <%= @boat.description %></p>
+        <p class="boat-show-description ps-3"> <%= raw @boat.details %></p>
       </div>
       <div class="boat-show-card">
         <h3>Reviews</h3>
@@ -60,7 +61,9 @@
           <div class="flex">
             <% @reviews.each do |review| %>
               <div class="flex ms-3">
-                <p><%= review.user.first_name %>: <strong><%= review.comment %></strong> (<%= review.created_at.strftime("%d.%m.%Y") %>)</p>
+                <p><%= review.user.first_name %> <small>(<%= review.created_at.strftime("%d.%m.%Y") %>)</small>:</p>
+                <p><strong><%= review.comment %></strong> </p>
+                <br>
               </div>
             <% end %>
           </div>

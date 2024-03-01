@@ -2,6 +2,8 @@ require "open-uri"
 require "pexels"
 require 'faker'
 
+boats = Boat.all
+
 puts "Delete all datas"
 Review.destroy_all
 Booking.destroy_all
@@ -99,7 +101,31 @@ boat_descriptions = [
   "Embark on a voyage of discovery and adventure on this magnificent yacht, where every day is a new adventure."
 ]
 
-50.times do |i|
+boat_details = [
+  "Step aboard our exquisite rental boat and embark on a journey of unparalleled luxury and adventure. Crafted with precision and elegance, our boat offers the perfect blend of style and functionality, ensuring a memorable experience on the water. Set sail with confidence as you navigate pristine coastlines, tranquil bays, and hidden coves, discovering breathtaking vistas and natural wonders along the way. <br><br>
+
+  Designed for discerning travelers seeking the ultimate aquatic escape, our rental boat boasts spacious interiors, plush seating, and top-of-the-line amenities, providing unparalleled comfort and convenience. Whether you're planning a romantic sunset cruise, a family day out, or an adrenaline-fueled water sports adventure, our versatile boat is equipped to exceed your expectations. <br><br>
+
+  Indulge in the freedom to explore at your own pace, charting a course to secluded beaches, vibrant coral reefs, and picturesque fishing spots. Dive into crystal-clear waters for a refreshing swim, snorkel amongst colorful marine life, or simply bask in the sun on the expansive deck, savoring moments of tranquility and serenity. <br><br>
+
+  With our experienced crew at your service, you can relax and unwind as we take care of every detail, from navigation to onboard dining. Treat yourself to gourmet meals prepared fresh onboard, paired with fine wines and champagne, for a truly indulgent experience. <br><br>
+
+  Whether you're celebrating a special occasion, bonding with loved ones, or simply seeking refuge from the hustle and bustle of daily life, our rental boat offers the perfect sanctuary on the water. Come aboard and experience the magic of the sea, where every moment is a treasure to be cherished forever.",
+
+  "Step aboard our sleek and modern rental boat and prepare to embark on an adventure like no other. With its cutting-edge design and state-of-the-art features, our boat offers an unparalleled experience on the water. <br><br>
+
+  Cruise along the shimmering waves and explore hidden coves, secluded beaches, and vibrant coral reefs. Our boat is equipped for all types of excursions, whether you're seeking a thrilling water sports adventure or a tranquil sunset cruise. <br><br>
+
+  Feel the wind in your hair as you navigate the open sea, or anchor in a serene bay and dive into the crystal-clear waters for a refreshing swim. Snorkel amongst colorful marine life, or simply relax on the spacious deck and soak up the sun. <br><br>
+
+  With comfortable seating, modern amenities, and plenty of space to stretch out and relax, our boat is the perfect setting for any occasion. Whether you're celebrating a special milestone, bonding with loved ones, or simply escaping the hustle and bustle of everyday life, our rental boat provides the ideal retreat. <br><br>
+
+  Our experienced crew is dedicated to ensuring your safety and enjoyment throughout your journey. From navigation to on-board entertainment, we take care of every detail so you can focus on making memories that will last a lifetime.
+
+Come aboard and experience the freedom and excitement of the open water with us. Your adventure awaits!"
+]
+
+25.times do |i|
   puts "Create #{i+1} boats"
   boat = Boat.create!(
     name: boat_names[i % boat_names.length],
@@ -108,11 +134,20 @@ boat_descriptions = [
     year_production: rand(1980..2023),
     user_id: User.pluck(:id).sample,
     latitude: lat_long[i % lat_long.length][0],
-    longitude: lat_long[i % lat_long.length][1]
+    longitude: lat_long[i % lat_long.length][1],
+    details: boat_details.sample
   )
 end
 
-boats_first = Boat.first(25)
+all_boats = Boat.all
+
+all_boats.each do |boat|
+  puts "Add details to boat"
+  boat.details = boat_details.sample
+  boat.save!
+end
+
+boats_first = Boat.last(20)
 boats_first.each_with_index do |boat, a|
   puts "#{a+1 } - Adding 1 images to Boat ##{boat.name}"
   file_path = Rails.root.join("app", "assets", "images", "bateau_#{a+1}.jpg")
@@ -121,7 +156,7 @@ boats_first.each_with_index do |boat, a|
   boat.save!
 end
 
-boats_last = Boat.last(5)
+boats_last = Boat.first(5)
 boats_last.each_with_index do |boat, a|
   puts "Adding 5 vimages to Boat ##{boat.name}"
   5.times do |b|
@@ -133,31 +168,32 @@ boats_last.each_with_index do |boat, a|
   boat.save!
 end
 
-puts "Create 50 bookings"
-50.times do |i|
-  puts "Booking #{i+1} created"
-
-  start_date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
-  end_date = start_date + rand(1..14).days
-  total_amount = rand(100..1000)
-  boat_id = Boat.pluck(:id).sample
-  user_id = User.pluck(:id).sample
-  comment = Faker::Lorem.sentence
-
-  # Try to find a valid date range
-  while Booking.where(boat_id: boat_id).where('(start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?)', start_date, start_date, end_date, end_date).exists?
+puts "Create 3 bookings per boat"
+all_boats.each do |boat|
+  2.times do |i|
     start_date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
     end_date = start_date + rand(1..14).days
-  end
+    total_amount = rand(100..1000)
+    boat_id = boat.id
+    user_id = User.pluck(:id).sample
+    comment = Faker::Lorem.sentence
 
-  Booking.create!(
-    start_date: start_date,
-    end_date: end_date,
-    total_amount: total_amount,
-    boat_id: boat_id,
-    user_id: user_id,
-    comment: comment
-  )
+    # Tryin to find a valid date range
+    while boat.bookings.where('(start_date <= ? AND end_date >= ?) OR (start_date <= ? AND end_date >= ?)', start_date, start_date, end_date, end_date).exists?
+      start_date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
+      end_date = start_date + rand(1..14).days
+    end
+
+    Booking.create!(
+      start_date: start_date,
+      end_date: end_date,
+      total_amount: total_amount,
+      boat_id: boat_id,
+      user_id: user_id,
+      comment: comment
+    )
+    puts "Booking #{i+1} created"
+  end
 end
 
 
@@ -212,15 +248,81 @@ fake_comments = [
   "Reliable service! The rental company was professional and trustworthy.",
   "Absolutely breathtaking! The sunset views from the boat were unforgettable.",
   "Convenient location! The rental dock was easy to find with ample parking.",
-  "An adventure to remember! The boat rental provided memories that will last a lifetime."
+  "An adventure to remember! The boat rental provided memories that will last a lifetime.",
+  "Effortless experience! The rental process was quick and efficient, allowing us to hit the water in no time. Perfect for making the most out of our day on the lake.",
+  "Great for a family day out! We rented a spacious pontoon and had a fantastic time cruising around with the kids. Plenty of room for everyone to relax and enjoy the sunshine.",
+  "Highlight of our vacation! Renting a boat was the best decision we made during our trip. From exploring hidden coves to spotting dolphins, it was an unforgettable adventure.",
+  "Impeccable condition! The boat we rented was spotless and well-maintained, giving us peace of mind throughout our excursion.",
+  "Seamless experience! From booking online to returning the boat, everything went smoothly. Made for a stress-free day on the water.",
+  "Guided tour was a game-changer! Our knowledgeable guide enhanced the experience, providing fascinating insights about the local history and wildlife.",
+  "Fun for the whole family! The kids had a blast swimming off the boat and searching for seashells along the shore.",
+  "Dependable service! The rental company was reliable and professional, ensuring a worry-free experience from start to finish.",
+  "Spectacular sunset views! Watching the sun dip below the horizon from the deck of the boat was truly magical. A must-do for anyone visiting the area.",
+  "Conveniently located! The rental dock was easy to find, with plenty of parking available nearby. Made it a breeze to start our aquatic adventure.",
+  "Efficient and friendly service! The staff helped us get acquainted with the boat and provided useful tips for navigating the waterways.",
+  "Picture-perfect day! Renting a boat allowed us to explore hidden gems and capture stunning photos along the coastline.",
+  "Top-notch experience! The boat exceeded our expectations in terms of comfort and performance, making for a memorable day on the water.",
+  "Smooth sailing all the way! From reservation to return, the rental process was seamless and hassle-free.",
+  "Informative and entertaining tour! Renting a boat with a guide added an extra layer of enjoyment as we learned fascinating facts about the area.",
+  "Fun-filled adventure! Renting a boat provided endless opportunities for snorkeling, swimming, and soaking up the sun.",
+  "Trustworthy rental company! We felt confident in the equipment and service provided, allowing us to relax and enjoy our time on the water.",
+  "Unbeatable views! Renting a boat allowed us to explore remote islands and admire the breathtaking scenery from a unique perspective.",
+  "Family bonding at its finest! Renting a boat gave us the chance to disconnect from screens and reconnect with each other amidst nature's beauty.",
+  "Five-star experience! The convenience, affordability, and sheer enjoyment of renting a boat made it the highlight of our vacation.",
+  "Prompt and professional! The rental process was streamlined, and we were out on the water in no time. Perfect for maximizing our leisure time.",
+  "Ideal for group outings! We rented a spacious pontoon and had an absolute blast with friends and family. Plenty of room for everyone to relax and enjoy.",
+  "Unforgettable memories! Renting a boat added an extra layer of excitement to our vacation, creating memories that will last a lifetime.",
+  "Spotless condition! The boat we rented was impeccably clean and well-maintained, ensuring a comfortable and enjoyable experience.",
+  "Effortless journey! From booking to return, the rental process was smooth sailing, allowing us to focus on enjoying our time on the water.",
+  "Insightful guided tour! Renting a boat with a knowledgeable guide provided a deeper understanding of the local area and its natural wonders.",
+  "Kid-friendly fun! Renting a boat kept the little ones entertained for hours, with endless opportunities for swimming and exploring.",
+  "Reliable service! The rental company's professionalism and attention to detail gave us peace of mind throughout our excursion.",
+  "Breathtaking sunset views! Renting a boat allowed us to witness the beauty of the setting sun from a whole new perspective.",
+  "Conveniently located! The rental dock was easy to find, making it a breeze to kick off our aquatic adventure.",
+  "Efficient operation! The rental staff got us on the water quickly, ensuring we could make the most of our rental time.",
+  "Perfect for group getaways! Renting a boat provided the ideal setting for bonding with friends and creating unforgettable memories.",
+  "Immaculate condition! The boat we rented was in top-notch shape, making for a comfortable and enjoyable experience.",
+  "Seamless journey! Renting a boat was hassle-free from start to finish, allowing us to focus on enjoying the beauty of our surroundings.",
+  "Informative guided tour! Renting a boat with a knowledgeable guide added an extra layer of enjoyment as we explored the area.",
+  "Family-friendly adventure! Renting a boat kept the whole family entertained, with endless opportunities for fun and relaxation.",
+  "Dependable service! The rental company's professionalism and reliability made for a stress-free experience.",
+  "Unforgettable experience! Renting a boat allowed us to create memories that will last a lifetime.",
+  "Stunning sunset cruise! Renting a boat provided the perfect setting for admiring the beauty of the setting sun.",
+  "Convenient location! The rental dock was easy to access, making it simple to start our aquatic adventure.",
+  "Efficient service! Renting a boat was quick and easy, allowing us to spend more time enjoying the water.",
+  "Great for group outings! We rented a spacious boat and had a fantastic time with friends. Plenty of room for everyone to relax and have fun.",
+  "Memorable experience! Renting a boat added excitement and adventure to our vacation, creating memories that we'll cherish forever.",
+  "Well-maintained equipment! The boat we rented was clean and in excellent condition, ensuring a safe and enjoyable ride.",
+  "Smooth process! Renting a boat was hassle-free, from making the reservation to returning the boat at the end of the day.",
+  "Informative tour! Renting a boat with a guide gave us a deeper understanding of the area's history and natural beauty.",
+  "Family-friendly fun! Renting a boat kept the kids entertained with swimming, exploring, and soaking up the sun.",
+  "Trustworthy rental company! We felt confident in the reliability and professionalism of the rental service.",
+  "Breathtaking views! Renting a boat allowed us to see the area from a new perspective and admire its beauty.",
+  "Convenient location! The rental dock was easy to find, making it simple to start our boating adventure.",
+  "Smooth operation! The rental staff were efficient and helpful, ensuring a seamless experience from start to finish.",
+  "Perfect for celebrations! Renting a boat made for a memorable birthday party with friends and family.",
+  "Spotless condition! The boat we rented was immaculately clean, adding to the overall enjoyment of our experience.",
+  "Effortless journey! Renting a boat was stress-free and straightforward, allowing us to focus on having fun.",
+  "Engaging tour! Renting a boat with a knowledgeable guide provided valuable insights and enhanced our enjoyment of the experience.",
+  "Family-friendly adventure! Renting a boat kept everyone entertained with activities like fishing, swimming, and sightseeing.",
+  "Dependable service! The rental company's professionalism and attention to detail made for a worry-free experience.",
+  "Unforgettable memories! Renting a boat allowed us to create lasting memories with loved ones.",
+  "Spectacular sunset cruise! Renting a boat provided the perfect setting for enjoying the beauty of the sunset.",
+  "Accessible location! The rental dock was conveniently located, making it easy to start our boating adventure."
 ]
-puts "Generate 50 fakes reviews with rating"
-50.times do |i|
-  puts "Review #{i+1} created"
-  Review.create!(
-    rating: rand(3..5),
-    comment: fake_comments[i],
-    user_id: User.pluck(:id).sample,
-    booking_id: Booking.pluck(:id).sample
-  )
+
+
+
+boats.each do |boat|
+  booking = boat.bookings.sample
+  10.times do |i|
+    puts "Generate #{i+1} fake review for boat #{boat.name}"
+
+    Review.create!(
+      rating: rand(2..5),
+      comment: fake_comments.sample,
+      user_id: User.pluck(:id).sample,
+      booking_id: booking.id
+    )
+  end
 end
