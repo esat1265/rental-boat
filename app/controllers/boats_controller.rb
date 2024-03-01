@@ -32,10 +32,9 @@ class BoatsController < ApplicationController
 
   def create
     @boat = Boat.new(boat_params)
-    if @boat.save!
+    if @boat.save
       redirect_to boat_path(@boat)
     else
-      flash[:notice] = "Your booking was successfully updated."
       render :new, status: :unprocessable_entity
 
       # render :new, status: :unprocessable_entity
