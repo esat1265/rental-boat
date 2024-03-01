@@ -34,7 +34,7 @@ gem "devise"
 gem "cloudinary"
 gem "faker"
 gem "paper_trail"
-gem 'sweetalert2-rails'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
