@@ -3,7 +3,6 @@
   <div class="row">
     <h3 id="show-boat-name"><%=@boat.name %></h3>
     <div class='d-flex'>
-
       <p> ⭐<%= (@reviews.average("rating")).to_i %>/5 (<%= @reviews.count %>) reviews</p>
     </div>
   </div>

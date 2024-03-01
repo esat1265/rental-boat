@@ -27,7 +27,6 @@ class BoatsController < ApplicationController
     @boat = Boat.find(params[:id])
     @bookings = @boat.bookings
     @reviews = Review.where(booking: @bookings)
-    # debugger
   end
 
   def create
