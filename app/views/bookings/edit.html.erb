@@ -28,3 +28,27 @@
         </div>
       <% end %>
     </div>
+
+<div class="col-md-6">
+  <div class="details-changes mt-5">
+    <h4>Booking Changes</h4>
+    <% @booking.versions.each do |version| %>
+      <% booking_before_change = version.reify %>
+      <div class="change-record">
+        <p><strong>Changed on:</strong> <%= version.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+
+        <% if booking_before_change %>
+          <% version.changeset.each do |key, value| %>
+            <% if key == 'start_date' || key == 'end_date' || key == 'total_amount' %>
+              <p><strong><%= key.titleize %>:</strong> from <%= value.first %> to <%= value.last %></p>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>This is the creation of the booking.</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+  </div>
+</div>
