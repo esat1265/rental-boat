@@ -34,10 +34,12 @@ class BoatsController < ApplicationController
     if @boat.save!
       redirect_to boat_path(@boat)
     else
+      flash[:notice] = "Your booking was successfully updated."
       render :new, status: :unprocessable_entity
+
+      # render :new, status: :unprocessable_entity
     end
   end
-
 
   private
 
