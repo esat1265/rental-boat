@@ -3,7 +3,7 @@
   <div class="row">
     <h3 id="show-boat-name"><%=@boat.name %></h3>
     <div class='d-flex'>
-      <p> ⭐4.4 (<%= @reviews.count %>) reviews</p>
+      <p><i class="fas fa-star text-warning"></i> 4.4 (<%= @reviews.count %>) reviews</p>
     </div>
   </div>
   <!--images-->
@@ -34,7 +34,7 @@
       <!-- this boat owned by-->
       <div class="boat-show-card" id ='owned-by'>
           <h6 class='ps-3'> This boat owned by Marc </h6>
-        <p class="boat-show-description ps-3"><%= a = rand(1..10)%> people · <%=rand(1..5)%> cabins · <%=a%> berths · <%=rand(1..2)%>bathrooms</p>
+        <p class="boat-show-description ps-3"><%= a = rand(3..10)%> people · <%=rand(1..5)%> cabins · <%=a%> berths · <%=rand(1..2)%> bathrooms</p>
       </div>
       <!--Description of owner -->
       <div class="boat-show-card">
@@ -84,7 +84,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-4 mt-3 sticky-top" style="top: 100px;">
+    <div class="col-md-4 mt-3">
       <div class="card shadow border-none">
         <div class="card-body">
           <h3 class="card-title">Details</h3>

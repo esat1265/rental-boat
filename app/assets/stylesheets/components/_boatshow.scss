@@ -83,3 +83,10 @@
 .boat-show-card .list-group {
   background-color: rgb(248, 249, 250);
 }
+
+
+.sticky {
+  position: fixed;
+  top: 80px; /* İstediğiniz boşluğa göre ayarlayabilirsiniz */
+  z-index: 1000;
+}
