@@ -37,6 +37,7 @@
           <h6 class='ps-3'> This boat owned by Marc </h6>
 
         <p class="boat-show-description ps-3"><%= a = rand(3..10)%> people · <%=rand(1..5)%> cabins · <%=a%> berths · <%=rand(1..2)%> bathrooms</p>
+        <p class="card-text ps-3">Year production: <strong><%= @boat.year_production %></strong></p>
 
       </div>
       <!--Description of owner -->
@@ -92,15 +93,12 @@
     </div>
 
     <div class="col-md-4 mt-3">
-      <div class="card shadow border-none">
+      <div class="card shadow border-none" id="sticky">
         <div class="card-body">
           <h3 class="card-title">Details</h3>
           <div class="">
-            <div class="me-3">
-              <p class="card-text">Price per day: <strong><%= @boat.price_per_day %> CHF</strong></p>
-            </div>
-            <div class="me-3">
-              <p class="card-text">Year production: <strong><%= @boat.year_production %></strong></p>
+            <div class="me-3 text-align-center">
+              <p class="card-text"><strong><%= @boat.price_per_day %></strong> CHF / day</p>
             </div>
           </div>
 

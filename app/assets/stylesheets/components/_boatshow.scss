@@ -76,15 +76,18 @@
 .boat-show-card .list-group-item {
   border-bottom: none;
   background-color: rgb(248, 249, 250);
-
 }
 .boat-show-card .list-group {
   background-color: rgb(248, 249, 250);
 }
 
-
-.sticky {
-  position: fixed;
-  top: 80px; /* İstediğiniz boşluğa göre ayarlayabilirsiniz */
+#sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 120px;
   z-index: 1000;
+}
+
+h3.card-title {
+  margin-bottom: 25px;
 }
