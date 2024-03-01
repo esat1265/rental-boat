@@ -34,7 +34,7 @@
     <div class="col-8 ">
       <!-- this boat owned by-->
       <div class="boat-show-card" id ='owned-by'>
-          <h6 class='ps-3'> This boat owned by Marc </h6>
+          <h6 class='ps-3'> This boat owned by <%= @boat.user.first_name %> </h6>
 
         <p class="boat-show-description ps-3"><%= a = rand(3..10)%> people · <%=rand(1..5)%> cabins · <%=a%> berths · <%=rand(1..2)%> bathrooms</p>
         <p class="card-text ps-3">Year production: <strong><%= @boat.year_production %></strong></p>
@@ -42,7 +42,7 @@
       </div>
       <!--Description of owner -->
       <div class="boat-show-card">
-        <h4 class='ps-3'> Description of Marc's boat.</h4>
+        <h4 class='ps-3'> Description of <%= @boat.user.first_name %>'s boat.</h4>
         <p class="boat-show-description ps-3"> <%= @boat.description %></p>
         <p class="boat-show-description ps-3"> <%= raw @boat.details %></p>
       </div>
