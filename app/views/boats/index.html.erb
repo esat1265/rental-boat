@@ -3,48 +3,50 @@
 <video autoplay muted loop class="video-bck">
   <source src="<%= video_path("background.mp4") %>" type="video/mp4">
 </video>
-    <div class="row justify-content-center float-start">
-      <div class="col-sm-8 my-3 bg-light rounded">
-        <h1>Pick a boat from our offers</h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga inventore dolorem perspiciatis.</p>
-        <%= simple_form_for :search, url: boats_path, method: :get, html: { class: "" } do |f| %>
-          <div class="row">
-            <div class="form-field col-lg-6 mt-5 mb-3 ">
-              <label>Search for a boat</label>
-              <%= f.input :boat_name, placeholder: "", label: false, input_html: { class: "form-control" }, wrapper: false %>
-            </div>
+    <div class="row justify-content-center float-start" style="margin-right: 0px">
+    <div class="col-sm-8 my-3 bg-light rounded mt-5 mb-5">
+      <h1 class="mb-4 mt-1" style="font-family: Garamond;">The best solution for your yacht rental</h1>
+      <p style="font-family: Garamond;">Private yacht rentals and bareboat charters for your next boating trip.</p>
+      <%= simple_form_for :search, url: boats_path, method: :get, html: { class: "" } do |f| %>
+        <div class="row">
+          <div class="form-field col-lg-6 mt-5 mb-3">
+            <label>Search for a boat</label>
+            <%= f.input :boat_name, placeholder: "", label: false, input_html: { class: "form-control" }, wrapper: false %>
           </div>
-          <div class="row">
-            <div class="form-field col-lg-6 mb-3">
-              <label>Pick starting date</label>
-              <input id="start_date" type="text" class="form-control" placeholder="DD/MM/YYYY" data-controller="datepicker" data-datepicker-target="start" name="search[start_date]">
-            </div>
+          <div class="form-field col-lg-6 mt-5 mb-3">
+            <label>Sort by Price</label>
+            <%= f.input :sort_price, collection: [['Cheapest to Most Expensive', 'price_asc'], ['Most Expensive to Cheapest', 'price_desc']], prompt: "Select Order", label: false, input_html: { class: "form-control" }, wrapper: false %>
           </div>
-          <div class="row">
-            <div class="form-field col-lg-6 mb-3">
-              <label>pick returning date</label>
-              <input id="end_date" type="text" class="form-control" placeholder="DD/MM/YYYY" data-controller="datepicker" data-datepicker-target="end" name="search[end_date]">
-            </div>
+          <div class="form-field col-lg-6 mb-3">
+            <label>Pick starting date</label>
+            <input id="start_date" type="text" class="form-control" placeholder="DD/MM/YYYY" data-controller="datepicker" data-datepicker-target="start" name="search[start_date]">
           </div>
-          <div class="row">
-            <div class="form-field col-lg-12 mb-2 mx-auto">
-              <%= f.submit "Search", class: "btn search-btn submit-btn", id: "form-btn" %>
-            </div>
+          <div class="form-field col-lg-6 mb-3">
+            <label>Pick returning date</label>
+            <input id="end_date" type="text" class="form-control" placeholder="DD/MM/YYYY" data-controller="datepicker" data-datepicker-target="end" name="search[end_date]">
           </div>
-        <% end %>
-      </div>
+          <div class="form-field col-lg-6 mb-3">
+            <label>Sort by Rating</label>
+            <%= f.input :sort_rating, collection: [['Best to Worst Rated', 'rating_desc'], ['Worst to Best Rated', 'rating_asc']], prompt: "Select Order", label: false, input_html: { class: "form-control" }, wrapper: false %>
+          </div>
+          <div class="form-field col-lg-12 mb-2 mx-auto">
+            <%= f.submit "Search", class: "btn search-btn submit-btn", id: "form-btn" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
+</div>
 
-<div class="container mt-3">
+<div class="container mt-5">
 
   <!-- Boat Cards Section -->
-    <div class="cards-home-page">
+    <div class="cards-home-page mt-5">
 
 
-  <div class="row mt-4"> <!-- Adjust margin-top as needed -->
+  <div class="row mt-5">
     <% @boats.each do |boat| %>
-      <%= link_to boat_path(boat), class: "col-md-4 mb-4 text-decoration-none" do %>
+      <%= link_to boat_path(boat), class: "col-md-4 mb-4 mt-5 text-decoration-none" do %>
         <div class="card boat-card h-100 d-flex flex-column">
           <div class="boat-card-image rounded-top">
             <div id="<%= "boatCarousel-#{boat.id}" %>" class="carousel slide" data-bs-ride="carousel">
@@ -77,7 +79,7 @@
             <div class="mt-auto d-flex justify-content-between align-items-center">
               <span class="text-dark"><strong><%= boat.price_per_day %></strong> CHF / day</span>
               <div class="review-stars">
-                <i class="fas fa-star text-warning"></i> 4/5
+                <i class="fas fa-star text-warning"></i> <%= (Review.where(booking: boat.bookings).average(:rating)).to_i %>/5
               </div>
             </div>
           </div>

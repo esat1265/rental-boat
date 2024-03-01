@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
 
     if @booking.update(booking_params)
       flash[:notice] = "Your booking was successfully updated."
-      redirect_to dashboard_path
+      redirect_to edit_booking_path(@booking)
     else
       render :edit, status: :unprocessable_entity
     end

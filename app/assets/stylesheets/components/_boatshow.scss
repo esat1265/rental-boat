@@ -5,10 +5,10 @@
 }
 
 .boat-show-card {
-  background: #F8F9FA;
+  background: #f8f9fa;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
 }
 
@@ -21,7 +21,6 @@
 .margin-top-negative {
   margin-top: 20px;
 }
-
 
 #owned-by > p {
   font-weight: 250;
@@ -55,7 +54,7 @@
   grid-row: span 2;
 }
 
-.big .boat-img{
+.big .boat-img {
   height: 100%;
 }
 
@@ -67,12 +66,11 @@
 }
 
 #show-boat-name {
-  padding: 10px 20px
+  padding: 10px 20px;
 }
 
-
 .grid-item .boat-img {
-  border-radius:0px !important;
+  border-radius: 0px !important;
 }
 
 .boat-show-card .list-group-item {

@@ -29,8 +29,8 @@ class Booking < ApplicationRecord
     return if start_date.blank? || end_date.blank?
 
     overlapping_bookings = Booking.where(boat_id: boat_id)
-                                 .where.not(id: id)
-                                 .where("(start_date, end_date) OVERLAPS (?, ?)", start_date, end_date)
+                                  .where.not(id: id)
+                                  .where("(start_date, end_date) OVERLAPS (?, ?)", start_date, end_date)
 
     if overlapping_bookings.exists?
       errors.add(:end_date, " is already booked for the selected boat")
