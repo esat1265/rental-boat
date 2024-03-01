@@ -34,13 +34,39 @@
       <!-- this boat owned by-->
       <div class="boat-show-card" id ='owned-by'>
           <h6 class='ps-3'> This boat owned by Marc </h6>
-        <p class="boat-show-description ps-3">8 people · 3 cabins · 8 berths · 2 bathrooms</p>
+        <p class="boat-show-description ps-3"><%= a = rand(1..10)%> people · <%=rand(1..5)%> cabins · <%=a%> berths · <%=rand(1..2)%>bathrooms</p>
       </div>
       <!--Description of owner -->
       <div class="boat-show-card">
         <h4 class='ps-3'> Description of Marc's boat.</h4>
         <p class="boat-show-description ps-3"> <%= @boat.description %></p>
       </div>
+      <div class="boat-show-card">
+        <h4><i class="bi bi-anchor"></i> Equipments of the sailboat</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><i class="fas fa-anchor"></i> Dinghy</li>
+              <li class="list-group-item"><i class="fas fa-ship"></i> Dinghy's motor</li>
+              <li class="list-group-item"><i class="fas fa-swimmer"></i> Paddle board</li>
+              <li class="list-group-item"><i class="fas fa-wrench"></i> Electric winches</li>
+              <li class="list-group-item"><i class="fas fa-flag"></i> Gennaker</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><i class="fas fa-compass"></i> Autopilot</li>
+              <li class="list-group-item"><i class="fas fa-umbrella-beach"></i> Bimini</li>
+              <li class="list-group-item"><i class="fas fa-anchor"></i> Bow thruster</li>
+              <li class="list-group-item"><i class="fas fa-swimmer"></i> Kayak</li>
+              <li class="list-group-item"><i class="fas fa-ship"></i> Snorkelling equipment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
       <div class="boat-show-card">
         <h3>Reviews</h3>
         <% if  @reviews.any? %>
@@ -58,8 +84,7 @@
         <% end %>
       </div>
     </div>
-
-    <div class="col-md-4 sticky-top mt-3">
+    <div class="col-md-4 mt-3 sticky-top" style="top: 100px;">
       <div class="card shadow border-none">
         <div class="card-body">
           <h3 class="card-title">Details</h3>
