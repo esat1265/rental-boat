@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     if @booking.save
       flash[:notice] = "Your booking was created successfully !"
-      redirect_to boat_path(@boat)
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end
