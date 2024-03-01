@@ -11,11 +11,11 @@
   <div class="grid-container">
       <% if @boat.photos.attached? %>
         <div class="grid-item big" style="width: 100%; height: 100%;">
-          <%= cl_image_tag(@boat.photos[0].key, height: '100%', width: '100%', crop: :fill) %>
+          <%= cl_image_tag(@boat.photos[0].key, height: '500', width: '550',crop: :fill, class: 'd-block h-100 w-100 boat-img') %>
         </div>
         <% @boat.photos.drop(1).each do |photo| %>
             <div class="grid-item">
-              <%= cl_image_tag(photo.key, height: '100%', width: '100%', crop: :fill) %>
+              <%= cl_image_tag(photo.key, height: 300, width: 550, crop: :fill, class: 'd-block w-100 boat-img') %>
             </div>
         <% end %>
       <% else %>
