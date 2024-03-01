@@ -38,7 +38,6 @@
         <p><strong>Changed on:</strong> <%= version.created_at.strftime("%d/%m/%Y %H:%M") %></p>
 
         <% if booking_before_change %>
-          <% # Afficher les modifications de chaque champ pertinent %>
           <% version.changeset.each do |key, value| %>
             <% if key == 'start_date' || key == 'end_date' || key == 'total_amount' %>
               <p><strong><%= key.titleize %>:</strong> from <%= value.first %> to <%= value.last %></p>
