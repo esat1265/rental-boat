@@ -3,7 +3,7 @@
   <div class="row">
     <h3 id="show-boat-name"><%=@boat.name %></h3>
     <div class='d-flex'>
-      <p> ⭐4.4 (<%= @reviews.count %>) reviews</p>
+      <p> ⭐<%= (@reviews.average("rating")).to_i %>/5 (<%= @reviews.count %>) reviews</p>
     </div>
   </div>
   <!--images-->
@@ -61,7 +61,7 @@
           <div class="flex">
             <% @reviews.each do |review| %>
               <div class="flex ms-3">
-                <p><%= review.user.first_name %> <small>(<%= review.created_at.strftime("%d.%m.%Y") %>)</small>:</p>
+                <p>⭐<%= (review.rating).to_i %>/5 <%= review.user.first_name %> <small>  (<%= review.created_at.strftime("%d.%m.%Y") %>)</small>:</p>
                 <p><strong><%= review.comment %></strong> </p>
                 <br>
               </div>
